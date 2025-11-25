@@ -1,41 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DEVELOPER — ABDUL HABIB H</title>
+  <meta name="description" content="Portofolio Abdul Habib — Web Developer / Designer / Freelancer" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#071028;
+      --card-grad: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      --muted:#94a3b8;
+      --accent:#06b6d4;
+      --accent-2:#7c3aed;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --glass-2: rgba(255,255,255,0.02);
+      --glass-3: rgba(255,255,255,0.04);
+      --shadow: 0 12px 30px rgba(2,6,23,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #071028 0%, #04212b 70%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:24px;
+    }
+    a{color:var(--accent);text-decoration:none}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto 28px auto}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#021018;font-size:18px;box-shadow:0 8px 28px rgba(3,7,18,0.6)}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted)}
+    nav a.primary{background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(124,58,237,0.08)); color:#e6f9fb}
+    .container{max-width:1100px;margin:0 auto;padding:8px}
+    .hero{display:grid;grid-template-columns: 1fr 420px;gap:28px;align-items:center;margin-bottom:28px}
+    .card{background: var(--card-grad);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.03)}
+    .intro h1{font-size:34px;margin:0 0 8px 0}
+    .intro p{margin:0 0 16px 0;color:var(--muted)}
+    .cta{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:700;border:0;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#021018}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .profile{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+    .profile img{width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+    .stat{display:flex;gap:14px;justify-content:center}
+    .stat .item{background:var(--glass);padding:8px 12px;border-radius:10px;font-weight:700;color:#dff7fb}
+
+    section{margin:18px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .project-card{display:flex;flex-direction:column;gap:12px;overflow:hidden;cursor:pointer;transition:transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .22s; background:transparent; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03)}
+    .project-card:hover, .project-card:focus{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,23,0.6); background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005))}
+    .project-card img{width:100%;height:180px;object-fit:cover;border-radius:8px;transition:transform .4s}
+    .project-card:hover img{transform:scale(1.03)}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:13px;color:var(--muted);cursor:pointer;transition:transform .12s}
+    .tag:active{transform:scale(.98)}
+    .skill{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:8px 10px;border-radius:999px;font-weight:600}
+    .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+    .chip{padding:8px 12px;border-radius:999px;background:var(--glass-2);cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
+
+    /* gallery styles */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .gallery img{width:100%;height:150px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .18s}
+    .gallery img:hover{transform:scale(1.03)}
+
+    footer{max-width:1100px;margin:28px auto 60px auto;text-align:center;color:var(--muted)}
+
+    /* modal / lightbox */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999}
+    .modal{background:linear-gradient(180deg,#071a28,#04212b);padding:18px;border-radius:14px;max-width:920px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.7);outline:none}
+    .modal img{width:100%;max-height:70vh;object-fit:contain;border-radius:8px}
+    .modal .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    .close{background:transparent;border:0;color:var(--muted);font-weight:700;cursor:pointer}
+
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr} .profile img{height:260px} .grid-3{grid-template-columns:repeat(2,1fr)} .gallery{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:600px){body{padding:14px} .grid-3{grid-template-columns:1fr} .gallery{grid-template-columns:repeat(2,1fr)} nav{display:none}}
+
+    .fade-in{animation:fadeIn .5s ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+    .focus-ring:focus{outline:3px solid rgba(6,182,212,0.14);outline-offset:4px}
+    .muted{color:var(--muted)}
+    .small{font-size:13px}
+    .center{display:flex;align-items:center;justify-content:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">AH</div>
+      <div>
+        <div style="font-weight:800">Abdul Habib H</div>
+        <div style="font-size:13px;color:var(--muted)">Web Developer • UI/UX • Freelancer</div>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="#about" class="small muted">Tentang</a>
+      <a href="#projects" class="small muted">Proyek</a>
+      <a href="#skills" class="small muted">Keterampilan</a>
+      <a href="#contact" class="small primary">Kontak</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card intro fade-in">
+        <h1>Halo — Saya <span style="color:var(--accent)">Abdul Habib H</span></h1>
+        <p class="muted">Saya membuat website yang cepat, responsif, dan mudah digunakan. Spesialis: Front-end, UI design, dan pengalaman pengguna.</p>
+
+        <div class="cta">
+          <button class="btn btn-primary" onclick="scrollToSection('projects')">Lihat Proyek</button>
+          <a class="btn btn-ghost" href="mailto:email@domain.com?subject=Kerja%20Sama">Hubungi Saya</a>
+          <a class="btn btn-ghost" href="/cv.pdf" target="_blank" rel="noopener">Download CV</a>
+        </div>
+
+        <div style="margin-top:18px" class="card small muted">
+          <strong>Ringkasan singkat:</strong>
+          <div style="margin-top:8px">3+ tahun pengalaman membangun website untuk UKM dan startup. Fokus pada HTML, CSS, JavaScript, dan aksesibilitas.</div>
         </div>
       </div>
 
-      <div class="grid-3" id="projectList">
+      <aside class="card profile fade-in" aria-label="Profil">
+        <!-- gunakan file yang kamu upload (lokal). Path lokal disediakan di environment: -->
+        <img id="profilePhoto" src="/mnt/data/photo_6156525952130206289_x.jpg" alt="Foto Abdul Habib">
+        <div style="font-weight:700">Abdul Habib H</div>
+        <div class="muted small">Front-end Developer</div>
+        <div class="stat" style="margin-top:8px">
+          <div class="item">30+ Projek</div>
+          <div class="item">100% Klien Puas</div>
+        </div>
+      </aside>
+    </section>
 
-        <div class="project-card" data-category="web">
-          <img src="https://picsum.photos/600/400?random=1" alt="Project Website">
-          <h3>Landing Page UMKM</h3>
-          <p class="muted small">Website modern untuk meningkatkan konversi penjualan.</p>
-          <div class="tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">UI Design</span>
-          </div>
+    <!-- ABOUT -->
+    <section id="about" class="card">
+      <h2 style="margin-top:0">Tentang Saya</h2>
+      <div class="muted small" style="margin-bottom:12px">Saya seorang pengembang front-end yang berfokus pada pembuatan pengalaman web intuitif. Saya suka merancang antarmuka yang sederhana namun kuat, dan bekerja sama dengan tim kecil maupun klien langsung.</div>
+
+      <div class="grid-2" style="margin-top:10px">
+        <div class="card small">
+          <h3 style="margin:0 0 6px 0">Layanan</h3>
+          <ul style="margin:0;padding-left:18px;color:var(--muted)">
+            <li>Desain & prototyping UI</li>
+            <li>Pembuatan website responsif</li>
+            <li>Landing page konversi tinggi</li>
+            <li>Optimasi performa & aksesibilitas</li>
+          </ul>
         </div>
 
-        <div class="project-card" data-category="dashboard">
-          <img src="https://picsum.photos/600/400?random=2" alt="Dashboard Project">
-          <h3>Dashboard Bisnis</h3>
-          <p class="muted small">Dashboard interaktif untuk monitoring operasional.</p>
-          <div class="tags">
-            <span class="tag">JavaScript</span>
-            <span class="tag">API</span>
-            <span class="tag">Charts</span>
-          </div>
+        <div class="card small">
+          <h3 style="margin:0 0 6px 0">Cara kerja</h3>
+          <ol style="margin:0;padding-left:18px;color:var(--muted)">
+            <li>Brief & discovery</li>
+            <li>Mockup & revisi</li>
+            <li>Development & testing</li>
+            <li>Delivery & maintenance</li>
+          </ol>
         </div>
+      </div>
+    </section>
 
-        <div class="project-card" data-category="portfolio">
-          <img src="https://picsum.photos/600/400?random=3" alt="Portfolio Project">
-          <h3>Portfolio Kreatif</h3>
-          <p class="muted small">Portofolio elegan untuk personal branding profesional.</p>
-          <div class="tags">
-            <span class="tag">UI/UX</span>
-            <span class="tag">Responsive</span>
-            <span class="tag">Animation</span>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 style="margin-bottom:10px">Proyek Pilihan</h2>
+
+      <div class="toolbar">
+        <button class="chip focus-ring" onclick="filterProjects('all')">Semua</button>
+        <button class="chip focus-ring" onclick="filterProjects('web')">Website</button>
+        <button class="chip focus-ring" onclick="filterProjects('dashboard')">Dashboard</button>
+        <button class="chip focus-ring" onclick="filterProjects('portfolio')">Portfolio</button>
+        <div style="flex:1"></div>
+        <div class="muted small">Klik proyek untuk melihat detail — semua item bisa diklik.</div>
+      </div>
+
+      <div id="projectsGrid" class="grid-3" aria-live="polite">
+        <!-- Project 1: Website (pakai gambar bebas dari picsum) -->
+        <article tabindex="0" role="button" class="project-card card" data-type="web" onclick="openModalProject(1)" onkeydown="if(event.key==='Enter')openModalProject(1)">
+          <img src="https://picsum.photos/900/600?random=21" alt="Website Toko Online">
+          <div>
+            <h3 style="margin:8px 0 0 0">Website Toko Online</h3>
+            <p class="muted small" style="margin:6px 0 8px 0">Landing page + sistem katalog untuk UKM dengan checkout sederhana.</p>
+            <div class="tags">
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('HTML')">HTML</span>
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('CSS')">CSS</span>
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('JavaScript')">JavaScript</span>
+            </div>
           </div>
-        </div>
+          <div style="margin-top:auto;display:flex;gap:8px">
+            <button class="btn btn-primary" onclick="event.stopPropagation(); openModalProject(1)">Detail</button>
+            <a class="btn btn-ghost" href="#" onclick="event.preventDefault(); alert('Demo: contoh live demo belum dipasang.');">Demo</a>
+          </div>
+        </article>
 
+        <!-- Project 2: Dashboard -->
+        <article tabindex="0" role="button" class="project-card card" data-type="dashboard" onclick="openModalProject(2)" onkeydown="if(event.key==='Enter')openModalProject(2)">
+          <img src="https://picsum.photos/900/600?random=42" alt="Dashboard Admin">
+          <div>
+            <h3 style="margin:8px 0 0 0">Dashboard Admin</h3>
+            <p class="muted small" style="margin:6px 0 8px 0">Panel manajemen produk & pesanan, filter & laporan.</p>
+            <div class="tags">
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('React')">React</span>
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('API')">API</span>
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('Tailwind')">Tailwind</span>
+            </div>
+          </div>
+          <div style="margin-top:auto;display:flex;gap:8px">
+            <button class="btn btn-primary" onclick="event.stopPropagation(); openModalProject(2)">Detail</button>
+            <a class="btn btn-ghost" href="#" onclick="event.preventDefault(); alert('Demo: contoh live demo belum dipasang.');">Demo</a>
+          </div>
+        </article>
+
+        <!-- Project 3: Galeri Foto (gunakan beberapa gambar + tombol buka gallery) -->
+        <article tabindex="0" role="button" class="project-card card" data-type="portfolio" onclick="openModalProject(3)" onkeydown="if(event.key==='Enter')openModalProject(3)">
+          <!-- gunakan foto lokal sebagai cover juga (kamu upload sebelumnya) -->
+          <img src="/mnt/data/photo_6156525952130206289_x.jpg" alt="Portfolio Photography">
+          <div>
+            <h3 style="margin:8px 0 0 0">Galeri Foto</h3>
+            <p class="muted small" style="margin:6px 0 8px 0">Galeri foto cepat dengan lazy-loading dan lightbox.</p>
+            <div class="tags">
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('Gatsby')">Gatsby</span>
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('Image Opt')">Image Opt</span>
+              <span class="tag" onclick="event.stopPropagation(); filterByTag('SEO')">SEO</span>
+            </div>
+          </div>
+          <div style="margin-top:auto;display:flex;gap:8px">
+            <button class="btn btn-primary" onclick="event.stopPropagation(); openModalProject(3)">Detail</button>
+            <a class="btn btn-ghost" href="#" onclick="event.preventDefault(); openGallery();">Buka Galeri</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PHOTO GALLERY SECTION (dapat dibuka dari project Galeri) -->
+    <section id="gallery" class="card" style="display:none">
+      <h2 style="margin-top:0">Galeri Foto</h2>
+      <div class="gallery" id="galleryGrid" aria-live="polite">
+        <!-- gambar bebas dari picsum -->
+        <img src="https://picsum.photos/800/600?random=101" alt="foto1" tabindex="0" onclick="openLightbox(this.src, 'Foto 1')" onkeydown="if(event.key==='Enter')openLightbox(this.src,'Foto 1')">
+        <img src="https://picsum.photos/800/600?random=102" alt="foto2" tabindex="0" onclick="openLightbox(this.src, 'Foto 2')" onkeydown="if(event.key==='Enter')openLightbox(this.src,'Foto 2')">
+        <img src="https://picsum.photos/800/600?random=103" alt="foto3" tabindex="0" onclick="openLightbox(this.src, 'Foto 3')" onkeydown="if(event.key==='Enter')openLightbox(this.src,'Foto 3')">
+        <img src="https://picsum.photos/800/600?random=104" alt="foto4" tabindex="0" onclick="openLightbox(this.src, 'Foto 4')" onkeydown="if(event.key==='Enter')openLightbox(this.src,'Foto 4')">
+        <img src="https://picsum.photos/800/600?random=105" alt="foto5" tabindex="0" onclick="openLightbox(this.src, 'Foto 5')" onkeydown="if(event.key==='Enter')openLightbox(this.src,'Foto 5')">
+        <img src="https://picsum.photos/800/600?random=106" alt="foto6" tabindex="0" onclick="openLightbox(this.src, 'Foto 6')" onkeydown="if(event.key==='Enter')openLightbox(this.src,'Foto 6')">
+        <img src="https://picsum.photos/800/600?random=107" alt="foto7" tabindex="0" onclick="openLightbox(this.src, 'Foto 7')" onkeydown="if(event.key==='Enter')openLightbox(this.src,'Foto 7')">
+        <img src="https://picsum.photos/800/600?random=108" alt="foto8" tabindex="0" onclick="openLightbox(this.src, 'Foto 8')" onkeydown="if(event.key==='Enter')openLightbox(this.src,'Foto 8')">
       </div>
     </section>
 
@@ -61,35 +279,184 @@
 
       <div style="margin-top:14px">
         <a href="mailto:email@domain.com" class="btn btn-primary">Kirim Email</a>
-        <a href="https://wa.me/6280000000000" class="btn btn-ghost" target="_blank">WhatsApp</a>
+        <a href="https://wa.me/085960397582" class="btn btn-ghost" target="_blank">WhatsApp</a>
       </div>
     </section>
 
   </main>
 
   <footer>
-    © 2025 Abdul Habib H — Dibuat dengan penuh cinta & kode.
+    © <span id="year"></span> Abdul Habib H — Dibuat dengan penuh cinta & kode.
   </footer>
 
+  <!-- MODAL GENERIC (untuk project detail) -->
+  <div id="modalBackdrop" class="modal-backdrop" onclick="closeModal(event)" role="dialog" aria-modal="true" style="transition:opacity .18s">
+    <div id="modal" class="modal" tabindex="-1" onclick="event.stopPropagation()">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 id="modalTitle">Judul Proyek</h3>
+        <button class="close" aria-label="Tutup" onclick="closeModal(true)">Tutup ✕</button>
+      </div>
+      <div id="modalBody" style="margin-top:8px" class="muted small">Deskripsi proyek akan muncul di sini.</div>
+      <div class="meta" style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+        <a id="modalDemo" class="btn btn-primary" href="#" target="_blank">Buka Demo</a>
+        <a id="modalRepo" class="btn btn-ghost" href="#" target="_blank">Lihat Kode</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX for gallery -->
+  <div id="lightboxBackdrop" class="modal-backdrop" onclick="closeLightbox(event)" style="display:none">
+    <div class="modal" onclick="event.stopPropagation()">
+      <img id="lightboxImg" src="" alt="">
+      <div class="meta">
+        <div id="lightboxCaption" class="muted small"></div>
+        <button class="close" onclick="closeLightbox(true)">Tutup ✕</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Scroll to section
-    function scrollToSection(id){
-      document.getElementById(id).scrollIntoView({behavior:'smooth'});
+    // dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Projects data (used in modal)
+    const projects = {
+      1: {
+        title: 'Website Toko Online',
+        body: 'Single page responsive + katalog produk, integrasi checkout sederhana. Peran: Front-end; Teknologi: HTML5, CSS3, JS. Hasil: meningkatkan konversi.',
+        demo: '#',
+        repo: '#',
+        tags: ['HTML','CSS','JavaScript']
+      },
+      2: {
+        title: 'Dashboard Admin',
+        body: 'Panel manajemen stok & pesanan dengan filter dan laporan. Peran: Front-end; Teknologi: React, REST API.',
+        demo: '#',
+        repo: '#',
+        tags: ['React','API','Tailwind']
+      },
+      3: {
+        title: 'Galeri Foto',
+        body: 'Galeri foto performa tinggi dengan lazy loading, optimasi gambar, dan lightbox. Peran: optimasi & UI.',
+        demo: '#',
+        repo: '#',
+        tags: ['Image Opt','SEO','UI/UX']
+      }
+    };
+
+    // open project modal
+    function openModalProject(id){
+      const p = projects[id];
+      if(!p) return alert('Proyek tidak ditemukan');
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalBody').textContent = p.body;
+      document.getElementById('modalDemo').href = p.demo;
+      document.getElementById('modalRepo').href = p.repo;
+      const mb = document.getElementById('modalBackdrop');
+      mb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      // focus
+      document.getElementById('modal').focus();
     }
 
-    // Filter projects
-    function filterProjects(category){
-      const items = document.querySelectorAll('.project-card');
-      items.forEach(card => {
-        if(category === 'all' || card.dataset.category === category){
-          card.style.display = "flex";
+    function closeModal(evt){
+      if(evt === true || evt.target === document.getElementById('modalBackdrop')){
+        document.getElementById('modalBackdrop').style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    // gallery open
+    function openGallery(){
+      const sec = document.getElementById('gallery');
+      if(sec.style.display === 'none' || sec.style.display === ''){
+        sec.style.display = 'block';
+        sec.scrollIntoView({behavior:'smooth'});
+      } else {
+        sec.scrollIntoView({behavior:'smooth'});
+      }
+    }
+
+    // lightbox
+    function openLightbox(src, caption){
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').textContent = caption || '';
+      document.getElementById('lightboxBackdrop').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(evt){
+      if(evt === true || evt.target === document.getElementById('lightboxBackdrop')){
+        document.getElementById('lightboxBackdrop').style.display = 'none';
+        document.body.style.overflow = '';
+        document.getElementById('lightboxImg').src = '';
+      }
+    }
+
+    // filtering logic for toolbar chips
+    function filterProjects(type){
+      const grid = document.getElementById('projectsGrid');
+      const cards = Array.from(grid.querySelectorAll('.project-card'));
+      cards.forEach(card => {
+        const t = card.getAttribute('data-type') || 'web';
+        if(type === 'all' || type === t){
+          card.style.display = '';
         } else {
-          card.style.display = "none";
+          card.style.display = 'none';
         }
       });
     }
-  </script>
 
+    // filter by tag (clicked tag)
+    function filterByTag(tag){
+      const grid = document.getElementById('projectsGrid');
+      const cards = Array.from(grid.querySelectorAll('.project-card'));
+      cards.forEach(card => {
+        const idTitle = card.querySelector('h3')?.textContent?.trim();
+        // find project id by title in projects object
+        let match = false;
+        for(const [id,p] of Object.entries(projects)){
+          if(p.title === idTitle && p.tags.includes(tag)){
+            match = true; break;
+          }
+        }
+        if(match) {
+          card.style.display = '';
+          card.classList.add('focus-ring');
+          setTimeout(()=>card.classList.remove('focus-ring'), 1200);
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Scroll helper
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // keyboard accessibility: Esc to close modals
+    document.addEventListener('keydown', (ev) => {
+      if(ev.key === 'Escape'){
+        closeModal(true);
+        closeLightbox(true);
+      }
+    });
+
+    // init: lazy load profile, set gallery hidden initially
+    (function init(){
+      const img = document.getElementById('profilePhoto');
+      if(img) img.loading = 'lazy';
+      // hide gallery initially
+      const gallerySection = document.getElementById('gallery');
+      if(gallerySection) gallerySection.style.display = 'none';
+      // set tabindex for gallery images
+      Array.from(document.querySelectorAll('.gallery img')).forEach(i=>{
+        i.loading = 'lazy';
+      });
+    })();
+  </script>
 </body>
 </html>
+
 
