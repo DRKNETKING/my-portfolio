@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Abdulhabib Portfolio PWA</title>
 
-<!-- META SEO -->
-<meta name="description" content="Portofolio modern Abdulhabib — Web Developer. Website cepat, animasi halus, PWA, SEO lengkap.">
-<meta name="keywords" content="Portofolio, Web Developer, Abdulhabib, PWA, Website Modern">
+<!-- ====================== SEO LENGKAP ====================== -->
+<meta name="description" content="Portofolio modern Abdulhabib — Web Developer. Website modern, animasi halus, PWA, SEO lengkap, dan UI glassmorphism futuristik.">
+<meta name="keywords" content="Portofolio, Web Developer, Abdulhabib, PWA, UI Modern, Website Developer">
 
 <!-- OPEN GRAPH -->
 <meta property="og:title" content="Abdulhabib Portfolio PWA">
-<meta property="og:description" content="Portofolio modern dengan animasi, PWA, dan UI futuristik.">
+<meta property="og:description" content="Portofolio modern dengan animasi, PWA, SEO, dan UI futuristik.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://picsum.photos/seed/og/600/400">
+<meta property="og:url" content="https://your-domain.com">
 
-<!-- SCHEMA JSON LD -->
+<!-- SCHEMA LD -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -24,359 +26,392 @@
  "name": "Abdulhabib",
  "url": "https://your-domain.com",
  "description": "Web Developer & UI Designer",
- "jobTitle": "Frontend Developer"
+ "jobTitle": "Frontend Developer",
+ "email": "mailto:habib08081999@gmail.com"
 }
 </script>
 
-<!-- MANIFEST OTOMATIS -->
+<!-- PWA MANIFEST (dibuat otomatis lewat JS) -->
 <link rel="manifest" id="manifest-placeholder">
 
 <meta name="theme-color" content="#00c7ff">
 
+<!-- ====================== STYLE ====================== -->
 <style>
-/* ------------------ VARIABEL ------------------ */
+
+/* ---------- VARIABLE THEME ---------- */
 :root {
   --bg: #0d1117;
   --card: rgba(22, 27, 34, 0.55);
-  --glass: rgba(255, 255, 255, 0.08);
+  --glass: rgba(255, 255, 255, 0.06);
   --text: #fff;
   --blue: #00c7ff;
   --blue2: #009dff;
-  --radius: 16px;
-  --shadow: 0 10px 30px rgba(0,0,0,0.45);
-  --blur: blur(12px);
+  --radius: 18px;
+  --shadow: 0 12px 40px rgba(0,0,0,0.45);
+  --blur: blur(14px);
   --transition: .35s ease;
-  --nav-bg: rgba(20, 20, 20, 0.55);
 }
 
-/* RESET */
-* {
-  margin: 0; padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+/* ---------- RESET ---------- */
+*{
+ margin:0; padding:0;
+ box-sizing:border-box;
+ font-family:"Poppins",sans-serif;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
+body{
+ background:var(--bg);
+ color:var(--text);
+ overflow-x:hidden;
 }
 
-/* ------------------ LOADING SCREEN ------------------ */
+/* ---------- LOADING SCREEN ---------- */
 #loading {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  z-index: 9999;
+ position: fixed;
+ inset: 0;
+ background: #000;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ z-index:10000;
 }
 
 .loader {
-  width: 60px;
-  height: 60px;
-  border: 6px solid #333;
-  border-top-color: var(--blue);
-  border-radius: 50%;
-  animation: spin 1s infinite linear;
+ width: 55px;
+ height: 55px;
+ border: 6px solid #222;
+ border-top-color: var(--blue);
+ border-radius: 50%;
+ animation: loadingSpin 1s infinite linear;
 }
 
-@keyframes spin {
-  to {transform: rotate(360deg);}
+@keyframes loadingSpin {
+ to { transform: rotate(360deg); }
 }
 
-/* ------------------ NAVBAR FLOATING ------------------ */
-nav {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  backdrop-filter: blur(10px);
-  background: var(--nav-bg);
-  padding: 15px 30px;
-  z-index: 6000;
-  display: flex;
-  justify-content: space-between;
-  align-items:center;
+/* ---------- NAVBAR ---------- */
+nav{
+ width:100%;
+ position:fixed;
+ top:0;
+ left:0;
+ padding:18px 30px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ backdrop-filter:blur(12px);
+ background:rgba(20,20,20,0.45);
+ z-index:7000;
 }
 
-nav h2 { color: var(--blue); }
+nav h2{
+ color:var(--blue);
+ font-weight:600;
+}
 
-/* ------------------ HEADER ------------------ */
-.header {
-  margin-top: 110px;
-  display: flex;
-  padding: 30px;
-  background: var(--glass);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: var(--blur);
-  align-items:center;
-  justify-content: space-between;
-  animation: fadeUp 0.8s ease;
+/* ---------- HEADER ---------- */
+.header{
+ margin-top:120px;
+ background:var(--glass);
+ padding:35px;
+ border-radius:var(--radius);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ box-shadow:var(--shadow);
+ backdrop-filter:var(--blur);
+ animation: fadeUp 0.7s ease;
 }
 
 @keyframes fadeUp {
-  from { opacity:0; transform: translateY(40px); }
-  to { opacity:1; transform: translateY(0); }
+ from { opacity:0; transform: translateY(40px); }
+ to { opacity:1; transform: translateY(0); }
 }
 
-.header img {
-  width: 160px;
-  border-radius: 20px;
-  filter: drop-shadow(0 5px 20px #000);
+.header img{
+ width:170px;
+ border-radius:20px;
+ filter:drop-shadow(0 5px 20px #0009);
 }
 
-/* ------------------ PROJECT GRID ------------------ */
-.section-title {
-  margin: 40px 0 15px;
-  font-size: 26px;
+/* ---------- PROJECT SECTION ---------- */
+.section-title{
+ margin:45px 0 15px;
+ font-size:28px;
 }
 
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 22px;
+.projects{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+ gap:24px;
+ margin-bottom:30px;
 }
 
-.project-card {
-  background: var(--glass);
-  padding: 18px;
-  border-radius: var(--radius);
-  backdrop-filter: var(--blur);
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  cursor: pointer;
+.project-card{
+ background:var(--glass);
+ padding:20px;
+ border-radius:var(--radius);
+ cursor:pointer;
+ backdrop-filter:var(--blur);
+ box-shadow:var(--shadow);
+ transition:var(--transition);
+ animation: fadeIn 1s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-10px) scale(1.05);
+@keyframes fadeIn {
+ from { opacity:0; transform:translateY(40px); }
+ to { opacity:1; transform:translateY(0); }
 }
 
-.project-card img {
-  width: 100%;
-  height: 190px;
-  border-radius: 12px;
-  object-fit: cover;
-  transition: .3s;
+.project-card:hover{
+ transform:translateY(-12px) scale(1.05);
 }
 
-.project-card img:hover {
-  transform: scale(1.12);
+.project-card img{
+ width:100%;
+ height:200px;
+ border-radius:12px;
+ object-fit:cover;
+ transition:.35s;
 }
 
-/* ------------------ CONTACT ------------------ */
-.contact-box {
-  margin-top: 40px;
-  background: var(--glass);
-  padding: 20px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: var(--blur);
+.project-card img:hover{
+ transform:scale(1.12);
 }
 
-.input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  border: none;
-  outline:none;
+/* ---------- CONTACT ---------- */
+.contact-box{
+ background:var(--glass);
+ padding:25px;
+ border-radius:var(--radius);
+ backdrop-filter:var(--blur);
+ box-shadow:var(--shadow);
+ margin-bottom:55px;
 }
 
-/* ------------------ WHATSAPP BUTTON ------------------ */
-#wa-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #25D366;
-  color: #fff;
-  padding: 16px 18px;
-  border-radius: 50%;
-  font-size: 26px;
-  cursor:pointer;
-  z-index: 7000;
-  animation: pulse 1.6s infinite;
+.input{
+ width:100%;
+ padding:14px;
+ margin-bottom:15px;
+ border:none;
+ outline:none;
+ border-radius:12px;
+}
+
+/* BUTTON */
+.btn{
+ padding:13px 20px;
+ background:var(--blue);
+ border:none;
+ border-radius:var(--radius);
+ color:white;
+ cursor:pointer;
+ transition:var(--transition);
+}
+
+.btn:hover{
+ background:var(--blue2);
+ transform:scale(1.05);
+}
+
+/* ---------- PARALLAX ---------- */
+.parallax {
+ background:url("https://picsum.photos/seed/parallax/1900/900");
+ background-size:cover;
+ background-attachment:fixed;
+ width:100%;
+ height:280px;
+ margin:50px 0;
+ border-radius:var(--radius);
+ box-shadow:var(--shadow);
+}
+
+/* ---------- WHATSAPP BUTTON ---------- */
+#wa-btn{
+ position:fixed;
+ bottom:22px;
+ right:22px;
+ background:#25D366;
+ color:white;
+ padding:17px;
+ border-radius:50%;
+ font-size:28px;
+ cursor:pointer;
+ z-index:8500;
+ animation:pulse 1.7s infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
+ 0%{transform:scale(1);}
+ 50%{transform:scale(1.18);}
+ 100%{transform:scale(1);}
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- LOADING -->
+<!-- ====================== LOADING ====================== -->
 <div id="loading">
-  <div class="loader"></div>
-  <p style="margin-top:12px;color:white">Memuat...</p>
+ <div class="loader"></div>
+ <p style="margin-top:14px;color:white">Memuat...</p>
 </div>
 
-<!-- NAV -->
+<!-- ====================== NAV ====================== -->
 <nav>
-  <h2>Abdulhabib</h2>
-  <p id="lang-text">Portfolio</p>
+ <h2>Abdulhabib</h2>
+ <p id="lang-text">Portfolio</p>
 </nav>
 
-<div class="container" style="max-width:1200px;margin:auto;padding:20px">
+<div style="max-width:1200px;margin:auto;padding:20px">
 
-  <!-- HEADER -->
-  <div class="header">
-      <div>
-        <h1 id="hello-text">Halo — Saya <span style="color:var(--blue);">Abdulhabib</span></h1>
-        <p id="desc-text">Membangun website modern cepat & responsif.</p>
-        <br>
-        <a href="mailto:habib08081999@gmail.com"><button class="btn">Hubungi Saya</button></a>
-      </div>
-      <img src="https://picsum.photos/seed/avatar/800/800">
-  </div>
+ <!-- ====================== HEADER ====================== -->
+ <div class="header">
+   <div>
+     <h1 id="hello-text">Halo — Saya <span style="color:var(--blue);">Abdulhabib</span></h1>
+     <p id="desc-text">Membangun website modern cepat & responsif.</p>
+     <br>
+     <a href="mailto:habib08081999@gmail.com">
+       <button class="btn">Hubungi Saya</button>
+     </a>
+   </div>
 
-  <!-- PROJECTS -->
-  <h2 class="section-title" id="project-title">Projek Pilihan</h2>
+   <img src="https://picsum.photos/seed/avatar/800/800">
+ </div>
 
-  <div class="projects">
+ <!-- PARALLAX -->
+ <div class="parallax"></div>
 
-    <div class="project-card">
-      <img src="https://picsum.photos/id/1015/600/400">
-      <h3>Sistem Akademik Modern</h3>
-      <p>Dashboard realtime (PHP + MySQL)</p>
-    </div>
+ <!-- ====================== PROJECT ====================== -->
+ <h2 class="section-title" id="project-title">Projek Pilihan</h2>
 
-    <div class="project-card">
-      <img src="https://picsum.photos/id/1006/600/400">
-      <h3>Smart Notes App</h3>
-      <p>PWA pencatatan realtime</p>
-    </div>
+ <div class="projects">
 
-    <div class="project-card">
-      <img src="https://picsum.photos/id/1072/600/400">
-      <h3>E-Commerce Lite</h3>
-      <p>UI modern (JS + Stripe)</p>
-    </div>
+   <div class="project-card">
+     <img src="https://picsum.photos/id/1015/600/400">
+     <h3>Sistem Akademik Modern</h3>
+     <p>Dashboard realtime (PHP + MySQL)</p>
+   </div>
 
-    <div class="project-card">
-      <img src="https://picsum.photos/id/1044/600/400">
-      <h3>Startup Landing Page</h3>
-      <p>Landing page modern</p>
-    </div>
+   <div class="project-card">
+     <img src="https://picsum.photos/id/1006/600/400">
+     <h3>Smart Notes App</h3>
+     <p>Aplikasi PWA realtime</p>
+   </div>
 
-    <div class="project-card">
-      <img src="https://picsum.photos/id/1024/600/400">
-      <h3>AI Image Generator UI</h3>
-      <p>Dark UI futuristik</p>
-    </div>
+   <div class="project-card">
+     <img src="https://picsum.photos/id/1072/600/400">
+     <h3>E-Commerce Lite</h3>
+     <p>UI modern (JS + Stripe)</p>
+   </div>
 
-  </div>
+   <div class="project-card">
+     <img src="https://picsum.photos/id/1044/600/400">
+     <h3>Startup Landing Page</h3>
+     <p>Landing page modern</p>
+   </div>
 
-  <!-- CONTACT -->
-  <div class="contact-box">
-    <h2 id="contact-title">Kontak</h2>
+   <div class="project-card">
+     <img src="https://picsum.photos/id/1024/600/400">
+     <h3>AI Image Generator</h3>
+     <p>AI UI futuristik</p>
+   </div>
 
-    <input class="input" id="nama" placeholder="Nama Anda">
-    <input class="input" id="email" placeholder="Email Anda">
-    <textarea class="input" id="pesan" rows="5" placeholder="Pesan Anda"></textarea>
+ </div>
 
-    <button class="btn" onclick="kirimPesan()">Kirim Pesan</button>
-  </div>
+ <!-- ====================== CONTACT ====================== -->
+ <div class="contact-box">
+   <h2 id="contact-title">Kontak</h2>
+
+   <input class="input" id="nama" placeholder="Nama Anda">
+   <input class="input" id="email" placeholder="Email Anda">
+   <textarea class="input" id="pesan" rows="5" placeholder="Pesan Anda"></textarea>
+
+   <button class="btn" onclick="kirimPesan()">Kirim Pesan</button>
+ </div>
 
 </div>
 
-<!-- WHATSAPP BUTTON -->
+<!-- ====================== WHATSAPP FLOATING ====================== -->
 <div id="wa-btn" onclick="window.open('https://wa.me/6285960397582')">💬</div>
 
+<!-- ====================== JS ====================== -->
 <script>
-// Loading
+
+/* ---------- LOADING ---------- */
 window.onload = () => {
-  setTimeout(() => {
-    document.getElementById("loading").style.display = "none";
-  }, 1000);
+ setTimeout(() => {
+   document.getElementById("loading").style.display = "none";
+ }, 1200);
 };
 
-// Auto Bahasa
+/* ---------- AUTO LANGUAGE ---------- */
 const userLang = navigator.language.startsWith("en") ? "en" : "id";
 
 if (userLang === "en") {
-  document.getElementById("hello-text").innerHTML = "Hello — I'm <span style='color:var(--blue);'>Abdulhabib</span>";
-  document.getElementById("desc-text").innerHTML = "Building modern, fast & responsive websites.";
-  document.getElementById("project-title").innerHTML = "Featured Projects";
-  document.getElementById("contact-title").innerHTML = "Contact";
-  document.getElementById("lang-text").innerHTML = "Portfolio";
+ document.getElementById("hello-text").innerHTML = "Hello — I'm <span style='color:var(--blue);'>Abdulhabib</span>";
+ document.getElementById("desc-text").innerHTML = "Building fast & modern responsive websites.";
+ document.getElementById("project-title").innerHTML = "Featured Projects";
+ document.getElementById("contact-title").innerHTML = "Contact";
+ document.getElementById("lang-text").innerHTML = "Portfolio";
 }
 
-// Kirim email
-function kirimPesan() {
-  const nama = document.getElementById("nama").value;
-  const email = document.getElementById("email").value;
-  const pesan = document.getElementById("pesan").value;
+/* ---------- KIRIM EMAIL ---------- */
+function kirimPesan(){
+ const nama = document.getElementById("nama").value;
+ const email = document.getElementById("email").value;
+ const pesan = document.getElementById("pesan").value;
 
-  window.location.href = `mailto:habib08081999@gmail.com?subject=Pesan dari ${nama}&body=Email: ${email}%0A%0A${pesan}`;
+ window.location.href = `mailto:habib08081999@gmail.com?subject=Pesan dari ${nama}&body=Email: ${email}%0A%0A${pesan}`;
 }
 
-/* =======================
-   MANIFEST (FILE 2) DITANAM
-==========================*/
+/* ---------- PWA MANIFEST OTOMATIS ---------- */
 const manifestData = {
-  name: "Abdulhabib Portfolio PWA",
-  short_name: "HabibPWA",
-  start_url: "index.html",
-  display: "standalone",
-  background_color: "#000000",
-  theme_color: "#00c7ff",
-  description: "Portofolio modern by Abdulhabib.",
-  icons: [
-    {
-      src: "https://picsum.photos/seed/pwa/192",
-      sizes: "192x192",
-      type: "image/png"
-    },
-    {
-      src: "https://picsum.photos/seed/pwa/512",
-      sizes: "512x512",
-      type: "image/png"
-    }
-  ]
+ name:"Abdulhabib Portfolio PWA",
+ short_name:"HabibPWA",
+ start_url:"index.html",
+ display:"standalone",
+ background_color:"#000000",
+ theme_color:"#00c7ff",
+ icons:[
+   { src:"https://picsum.photos/seed/pwa/192", sizes:"192x192", type:"image/png" },
+   { src:"https://picsum.photos/seed/pwa/512", sizes:"512x512", type:"image/png" }
+ ]
 };
 
-// buat blob manifest
-const manifestBlob = new Blob([JSON.stringify(manifestData)], {type: "application/json"});
+const manifestBlob = new Blob([JSON.stringify(manifestData)], {type:"application/json"});
 const manifestURL = URL.createObjectURL(manifestBlob);
 document.getElementById("manifest-placeholder").setAttribute("href", manifestURL);
 
-/* ============================
-   SERVICE WORKER (FILE 3) DITANAM
-===============================*/
-if ("serviceWorker" in navigator) {
-  const swCode = `
-    self.addEventListener("install", e => {
-      e.waitUntil(
-        caches.open("habib-cache").then(cache => {
-          return cache.addAll(["index.html"]);
-        })
-      );
-    });
+/* ---------- SERVICE WORKER OTOMATIS ---------- */
+if ("serviceWorker" in navigator){
+ const swCode = `
+   self.addEventListener("install", e => {
+     e.waitUntil(
+       caches.open("habib-cache").then(cache => cache.addAll(["index.html"]))
+     );
+   });
 
-    self.addEventListener("fetch", e => {
-      e.respondWith(
-        caches.match(e.request).then(res => {
-          return res || fetch(e.request);
-        })
-      );
-    });
-  `;
+   self.addEventListener("fetch", e => {
+     e.respondWith(
+       caches.match(e.request).then(res => res || fetch(e.request))
+     );
+   });
+ `;
 
-  const swBlob = new Blob([swCode], {type: "application/javascript"});
-  const swURL = URL.createObjectURL(swBlob);
-
-  navigator.serviceWorker.register(swURL);
+ const swBlob = new Blob([swCode], {type:"application/javascript"});
+ const swURL = URL.createObjectURL(swBlob);
+ navigator.serviceWorker.register(swURL);
 }
+
 </script>
 
 </body>
 </html>
+
 
 
 
