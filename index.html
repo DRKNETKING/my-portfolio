@@ -42,23 +42,23 @@
     nav h2{color:var(--blue);font-weight:700}
     nav .nav-right{display:flex;gap:14px;align-items:center}
     .chip{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:12px;font-size:14px}
+    #live-clock{font-weight:600;color:rgba(255,255,255,0.9);font-size:14px;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,0.25);}
 
     /* Container */
     .container{max-width:1200px;margin:120px auto 60px;padding:20px}
 
-    /* Header with slideshow */
+    /* Header with slideshow/animation */
     .header{display:flex;gap:24px;align-items:center;background:var(--glass);padding:26px;border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:var(--blur);overflow:hidden}
     .header .left{flex:1}
     .header h1{font-size:28px;margin-bottom:6px}
     .header p{opacity:.95;line-height:1.4}
 
-    /* Slideshow */
-    .slideshow{width:200px;height:200px;border-radius:20px;overflow:hidden;flex-shrink:0;position:relative}
-    .slide{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity .6s ease;opacity:0}
-    .slide.active{opacity:1}
-    .slideshow .controls{position:absolute;left:8px;right:8px;bottom:8px;display:flex;justify-content:space-between;gap:8px}
-    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.35)}
-    .dot.active{background:var(--blue)}
+    /* Animated hero */
+    .hero-anim{width:260px;height:260px;border-radius:20px;overflow:hidden;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#071327 0%, rgba(0,0,0,0.25) 100%);box-shadow:0 12px 36px rgba(0,0,0,0.55)}
+    .hero-anim svg{width:100%;height:100%;display:block}
+
+    /* small overlay text inside anim */
+    .anim-label{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg,rgba(0,199,255,0.12),rgba(0,157,255,0.1));padding:8px 10px;border-radius:10px;font-weight:600;color:var(--text);backdrop-filter:blur(6px);font-size:13px}
 
     /* Projects */
     .section-title{margin:36px 0 14px;font-size:22px}
@@ -95,7 +95,7 @@
     @media(max-width:900px){
       .header{flex-direction:column;align-items:flex-start}
       .modal-card{grid-template-columns:1fr}
-      .slideshow{width:100%;height:280px}
+      .hero-anim{width:100%;height:240px}
     }
 
     footer{margin:40px 0 80px;text-align:center;color:rgba(255,255,255,0.5)}
@@ -104,13 +104,17 @@
 <body>
 
   <!-- Loading -->
-  <div id="loading"><div class="loader"></div><p style="color:#fff;margin-top:12px">Memuat...</p></div>
+  <div id="loading" role="status" aria-live="polite"><div class="loader" aria-hidden="true"></div><p style="color:#fff;margin-top:12px">Memuat...</p></div>
 
   <!-- NAV -->
-  <nav>
-    <h2>Abdulhabib</h2>
-    <div class="nav-right">
+  <nav role="navigation" aria-label="Main Navigation">
+    <div style="display:flex;align-items:center;gap:14px">
+      <h2>Abdulhabib</h2>
       <div class="chip" id="lang-text">Portfolio</div>
+    </div>
+
+    <div class="nav-right" role="region" aria-label="Utility">
+      <div id="live-clock" aria-live="polite" title="Jam lokal">--:--:--</div>
       <div class="chip">Frontend • UI</div>
     </div>
   </nav>
@@ -120,25 +124,63 @@
     <!-- Header -->
     <section class="header" aria-labelledby="intro">
       <div class="left">
-        <h1 id="hello-text">Halo — Saya <span style="color:var(--blue)">Abdulhabib</span></h1>
-        <!-- UPDATED DESCRIPTION (modern 2025 + accessible features note) -->
-        <p id="desc-text">Membangun website modern, cepat, dan responsif — solusi UI/UX modern 2025. Semua fitur di portofolio ini dapat diakses dan diklik satu per satu untuk melihat demo, repo, atau detail proyek.</p>
+        <!-- UPDATED: projek-focused title -->
+        <h1 id="hello-text">Projek Saya — <span style="color:var(--blue)">Solusi Web & PWA</span></h1>
+
+        <!-- NEW DESCRIPTION: menarik, singkat, actionable -->
+        <p id="desc-text">
+          Koleksi proyek terbaik: aplikasi PWA offline-first, UI modern, dan pengalaman interaktif. Klik setiap kartu proyek untuk demo, kode, dan dokumentasi — semuanya dapat diakses, keyboard-friendly, dan siap diuji.
+        </p>
+
         <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
           <a href="mailto:habib08081999@gmail.com" class="btn" aria-label="Hubungi Abdulhabib via email">Hubungi Saya</a>
           <button class="btn ghost" id="download-resume" aria-label="Download CV">Download CV</button>
         </div>
       </div>
 
-      <!-- Slideshow -->
-      <div class="slideshow" aria-hidden="false" id="slideshow">
-        <div class="slide active" style="background-image:url('https://picsum.photos/seed/avatar1/800/800')" data-title="Avatar 1" role="img" aria-label="Avatar 1"></div>
-        <div class="slide" style="background-image:url('https://picsum.photos/seed/avatar2/800/800')" data-title="Avatar 2" role="img" aria-label="Avatar 2"></div>
-        <div class="slide" style="background-image:url('https://picsum.photos/seed/avatar3/800/800')" data-title="Avatar 3" role="img" aria-label="Avatar 3"></div>
-        <div class="controls" style="position:absolute;bottom:10px;left:10px;right:10px;display:flex;justify-content:center;gap:8px" aria-hidden="true">
-          <div class="dot active" data-index="0"></div>
-          <div class="dot" data-index="1"></div>
-          <div class="dot" data-index="2"></div>
-        </div>
+      <!-- HERO ANIMATION (modern 2025) -->
+      <div class="hero-anim" aria-hidden="false" id="hero-anim" role="img" aria-label="Animasi proyek modern 2025">
+        <!-- SVG animation: ringan, offline safe -->
+        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#00c7ff"/>
+              <stop offset="100%" stop-color="#6b00ff"/>
+            </linearGradient>
+            <filter id="f1" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+              <feBlend in="SourceGraphic" in2="blur"/>
+            </filter>
+          </defs>
+
+          <!-- moving shapes for a modern 'tech' vibe -->
+          <circle cx="80" cy="120" r="40" fill="url(#g1)" opacity="0.18">
+            <animate attributeName="cx" values="60;120;80" dur="6s" repeatCount="indefinite" />
+            <animate attributeName="cy" values="100;140;120" dur="6s" repeatCount="indefinite" />
+          </circle>
+
+          <rect x="220" y="60" rx="18" ry="18" width="110" height="110" fill="#001f3f" opacity="0.12" transform="rotate(20 275 115)">
+            <animate attributeName="x" values="200;240;220" dur="7s" repeatCount="indefinite" />
+          </rect>
+
+          <g filter="url(#f1)">
+            <path d="M50 300 C150 200 250 380 350 280" stroke="url(#g1)" stroke-width="6" fill="none" stroke-linecap="round">
+              <animate attributeName="d" dur="8s" repeatCount="indefinite"
+                values="
+                  M50 300 C150 200 250 380 350 280;
+                  M30 280 C140 220 260 360 370 260;
+                  M50 300 C150 200 250 380 350 280
+                " />
+            </path>
+          </g>
+
+          <!-- center card mockup -->
+          <rect x="110" y="110" rx="18" ry="18" width="180" height="120" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+          <text x="200" y="165" text-anchor="middle" font-size="18" font-weight="700" fill="#e9f0f6">Modern UI 2025</text>
+          <text x="200" y="188" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.7)">PWA • Animasi • Offline-first</text>
+        </svg>
+
+        <div class="anim-label" id="anim-label">Animasi Modern 2025</div>
       </div>
     </section>
 
@@ -229,9 +271,9 @@
     <!-- Contact -->
     <div class="contact-box" id="contact">
       <h2 id="contact-title">Kontak</h2>
-      <input class="input" id="nama" placeholder="Nama Anda" />
-      <input class="input" id="email" placeholder="Email Anda" />
-      <textarea class="input" id="pesan" rows="5" placeholder="Pesan Anda"></textarea>
+      <input class="input" id="nama" placeholder="Nama Anda" aria-label="Nama Anda" />
+      <input class="input" id="email" placeholder="Email Anda" aria-label="Email Anda" />
+      <textarea class="input" id="pesan" rows="5" placeholder="Pesan Anda" aria-label="Pesan Anda"></textarea>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
         <button class="btn" onclick="kirimPesan()" aria-label="Kirim pesan">Kirim Pesan</button>
         <button class="btn ghost" id="clear-form" aria-label="Bersihkan form">Bersihkan</button>
@@ -243,7 +285,7 @@
   </main>
 
   <!-- WA Floating -->
-  <div id="wa-btn" title="Chat WhatsApp" onclick="window.open('https://wa.me/6285960397582','_blank')">💬</div>
+  <div id="wa-btn" title="Chat WhatsApp" onclick="window.open('https://wa.me/6285960397582','_blank')" role="button" aria-label="Chat WhatsApp">💬</div>
 
   <!-- Modal -->
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
@@ -268,15 +310,34 @@
   <script>
     // Remove loading
     window.addEventListener('load',()=>{
-      setTimeout(()=>{document.getElementById('loading').style.display='none'},700);
-      document.getElementById('yr').textContent = new Date().getFullYear();
+      setTimeout(()=>{ const ld = document.getElementById('loading'); if(ld) ld.style.display='none'; },700);
+      const yr = document.getElementById('yr'); if(yr) yr.textContent = new Date().getFullYear();
+      startClock(); // start clock on load
     });
+
+    // Live clock in navbar (local ID)
+    function startClock(){
+      const clockEl = document.getElementById('live-clock');
+      if(!clockEl) return;
+      function pad(n){ return n.toString().padStart(2,'0'); }
+      function update(){
+        const now = new Date();
+        // Format: Hari, DD MMM YYYY — HH:MM:SS (short)
+        const opts = { weekday:'short', day:'2-digit', month:'short', year:'numeric' };
+        const dateStr = now.toLocaleDateString('id-ID', opts);
+        const timeStr = [pad(now.getHours()), pad(now.getMinutes()), pad(now.getSeconds())].join(':');
+        clockEl.textContent = `${dateStr} — ${timeStr}`;
+      }
+      update();
+      // update every second
+      setInterval(update,1000);
+    }
 
     // Language auto (EN fallback)
     const userLang = navigator.language && navigator.language.startsWith('en') ? 'en' : 'id';
     if(userLang === 'en'){
-      document.getElementById('hello-text').innerHTML = "Hello — I'm <span style='color:var(--blue)'>Abdulhabib</span>";
-      document.getElementById('desc-text').textContent = 'Building fast & modern responsive websites — modern UI/UX 2025. All features are accessible and clickable individually.';
+      document.getElementById('hello-text').innerHTML = "My Projects — <span style='color:var(--blue)'>Web & PWA</span>";
+      document.getElementById('desc-text').textContent = 'Featured projects: offline-first PWAs, modern UI, and interactive demos. Click each card for demo, code, and docs — fully accessible and keyboard friendly.';
       document.getElementById('project-title').textContent = 'Featured Projects — Modern 2025';
       document.getElementById('contact-title').textContent = 'Contact';
       document.getElementById('lang-text').textContent = 'Portfolio';
@@ -291,33 +352,16 @@
       const body = encodeURIComponent('Email: ' + email + '\n\n' + pesan);
       window.location.href = `mailto:habib08081999@gmail.com?subject=${subj}&body=${body}`;
     }
-    document.getElementById('clear-form').addEventListener('click',()=>{
-      document.getElementById('nama').value='';document.getElementById('email').value='';document.getElementById('pesan').value='';
+    const clearBtn = document.getElementById('clear-form');
+    if(clearBtn) clearBtn.addEventListener('click',()=>{
+      const n = document.getElementById('nama'), e = document.getElementById('email'), p = document.getElementById('pesan');
+      if(n) n.value=''; if(e) e.value=''; if(p) p.value='';
     });
-
-    // Slideshow logic
-    (function(){
-      const slides = Array.from(document.querySelectorAll('.slideshow .slide'));
-      const dots = Array.from(document.querySelectorAll('.dot'));
-      let idx = 0; let interval = null; const delay = 3500;
-      function go(i){
-        slides.forEach((s,si)=>s.classList.toggle('active',si===i));
-        dots.forEach((d,di)=>d.classList.toggle('active',di===i));
-        idx = i;
-      }
-      function next(){go((idx+1)%slides.length)}
-      dots.forEach(d=>d.addEventListener('click',()=>{go(parseInt(d.dataset.index));reset()}));
-      function reset(){clearInterval(interval);interval=setInterval(next,delay)}
-      go(0); interval=setInterval(next,delay);
-      // pause on hover
-      const ss = document.getElementById('slideshow');
-      ss.addEventListener('mouseenter',()=>clearInterval(interval));
-      ss.addEventListener('mouseleave',()=>reset());
-    })();
 
     // Modal logic for project cards + open from buttons + repo/demo handling
     (function(){
       const modal = document.getElementById('modal');
+      if(!modal) return;
       const modalImg = document.getElementById('modal-img');
       const modalTitle = document.getElementById('modal-title');
       const modalDesc = document.getElementById('modal-desc');
@@ -326,16 +370,16 @@
       const closeBtn = document.getElementById('modal-close');
 
       function openModal(data){
-        modalImg.src = data.img || '';
-        modalImg.alt = (data.title ? data.title + ' — image' : 'Project image');
-        modalTitle.textContent = data.title || '';
-        modalDesc.textContent = data.desc || '';
-        modalDemo.href = data.demo || '#';
-        modalRepo.href = data.repo || '#';
-        // if demo/repo are hashes (#) keep links disabled visually but still usable
+        if(modalImg) { modalImg.src = data.img || ''; modalImg.alt = (data.title ? data.title + ' — image' : 'Project image'); }
+        if(modalTitle) modalTitle.textContent = data.title || '';
+        if(modalDesc) modalDesc.textContent = data.desc || '';
+        if(modalDemo) modalDemo.href = data.demo || '#';
+        if(modalRepo) modalRepo.href = data.repo || '#';
         modal.classList.add('show');
         modal.setAttribute('aria-hidden','false');
         document.body.style.overflow = 'hidden';
+        // focus management
+        closeBtn && closeBtn.focus();
       }
       function closeModal(){
         modal.classList.remove('show');
@@ -357,11 +401,9 @@
         }
         // open on whole card click or enter key
         card.addEventListener('click',handler);
-        card.addEventListener('keydown',e=>{ if(e.key==='Enter') handler(e) });
+        card.addEventListener('keydown',e=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); handler(e); } });
 
         // Actions inside card:
-        //  - button[data-action="open"] => open modal
-        //  - a[data-action="demo" or "repo"] => open corresponding link in new tab (prevent closing modal)
         const openBtn = card.querySelector('button[data-action="open"]');
         if(openBtn) openBtn.addEventListener('click', e=>{ e.stopPropagation(); handler(e); });
 
@@ -370,13 +412,12 @@
           a.addEventListener('click', e=>{
             e.stopPropagation();
             const action = a.dataset.action;
-            // get from closest card dataset
             const dataset = a.closest('.project-card').dataset;
             const url = action === 'repo' ? (dataset.repo || '#') : (dataset.demo || '#');
             if(url && url !== '#'){
               window.open(url, '_blank', 'noopener');
             } else {
-              // if no real url, open modal detail as fallback
+              // fallback: show modal detail
               const data = {
                 title: dataset.title || '',
                 desc: dataset.desc || '',
@@ -390,7 +431,7 @@
         });
       });
 
-      closeBtn.addEventListener('click',closeModal);
+      closeBtn && closeBtn.addEventListener('click',closeModal);
       modal.addEventListener('click',e=>{ if(e.target === modal) closeModal(); });
       window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
     })();
@@ -420,7 +461,8 @@
         };
         const manifestBlob = new Blob([JSON.stringify(manifestData)],{type:'application/json'});
         const manifestURL = URL.createObjectURL(manifestBlob);
-        document.getElementById('manifest-placeholder').setAttribute('href',manifestURL);
+        const el = document.getElementById('manifest-placeholder');
+        if(el) el.setAttribute('href',manifestURL);
       }catch(e){console.warn('Manifest create error',e)}
     })();
 
@@ -439,11 +481,12 @@
     })();
 
     // defensive: console friendly
-    console.log('Portfolio loaded — All interactive features enabled.');
+    console.log('Portfolio loaded — Animasi & jam berjalan aktif.');
   </script>
 
 </body>
 </html>
+
 
 
 
