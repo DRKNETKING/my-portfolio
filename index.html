@@ -17,7 +17,7 @@
   --shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
-/* ====== RESET ====== */
+/* RESET */
 * {
   margin: 0; padding: 0;
   box-sizing: border-box;
@@ -31,7 +31,7 @@ body {
   animation: fadeIn 1s ease;
 }
 
-/* ====== GLOBAL ANIMATIONS ====== */
+/* ANIMATIONS */
 @keyframes fadeIn {
   0% {opacity: 0;}
   100% {opacity: 1;}
@@ -48,7 +48,7 @@ body {
   100% {box-shadow: 0 0 10px var(--blue);}
 }
 
-/* ====== CONTAINER ====== */
+/* CONTAINER */
 .container {
   max-width: 1200px;
   margin: 30px auto;
@@ -64,6 +64,7 @@ body {
   box-shadow: var(--shadow);
   justify-content: space-between;
   align-items: center;
+  gap: 25px;
   animation: slideUp 0.6s ease;
 }
 
@@ -87,9 +88,14 @@ body {
   cursor: pointer;
   border: none;
   animation: glowBtn 3s infinite ease-in-out;
+  transition: 0.3s;
 }
 
-/* ==== PROJECT GRID ==== */
+.btn:hover {
+  transform: scale(1.08);
+}
+
+/* PROJECT GRID */
 .section-title {
   font-size: 26px;
   margin: 45px 0 15px 0;
@@ -97,7 +103,7 @@ body {
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 22px;
 }
 
@@ -105,9 +111,9 @@ body {
   background: var(--card);
   padding: 15px;
   border-radius: var(--radius);
-  overflow: hidden;
-  transition: 0.25s;
+  transition: 0.25s ease;
   animation: slideUp 0.7s ease;
+  cursor: pointer;
 }
 
 .project-card:hover {
@@ -119,15 +125,15 @@ body {
   width: 100%;
   height: 180px;
   border-radius: 10px;
-  transition: transform 0.3s;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .project-card img:hover {
   transform: scale(1.15) rotate(1.5deg);
 }
 
-/* CONTACT FORM */
+/* CONTACT */
 .contact-box {
   background: var(--card);
   padding: 22px;
@@ -156,16 +162,8 @@ body {
   animation: glowBtn 3s infinite ease-in-out;
 }
 
-/* ====== RESPONSIVE ====== */
-@media(max-width: 900px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+/* RESPONSIVE */
 @media(max-width: 600px) {
-  .projects {
-    grid-template-columns: 1fr;
-  }
   .header {
     flex-direction: column;
     text-align: center;
@@ -185,11 +183,16 @@ body {
           <p>Membangun tampilan web modern, cepat, dan responsif.</p>
           
           <div class="header-btns">
-              <button class="btn">Hubungi Saya</button>
+              <a href="mailto:habib08081999@gmail.com">
+                <button class="btn">Hubungi Saya</button>
+              </a>
           </div>
       </div>
 
-      <img src="https://picsum.photos/seed/avatar/800/800" width="150" height="150" style="border-radius:20px;">
+      <img src="https://picsum.photos/seed/avatar/800/800" 
+           width="150" 
+           height="150" 
+           style="border-radius:20px;">
   </div>
 
   <!-- PROJECT SECTION -->
@@ -197,36 +200,31 @@ body {
 
   <div class="projects">
 
-    <!-- PROJECT 1 -->
-    <div class="project-card">
+    <div class="project-card" onclick="window.open('#', '_blank')">
       <img src="https://picsum.photos/id/1015/600/400">
       <h3>Sistem Akademik Modern</h3>
       <p>Dashboard akademik realtime (PHP + MySQL).</p>
     </div>
 
-    <!-- PROJECT 2 -->
-    <div class="project-card">
+    <div class="project-card" onclick="window.open('#', '_blank')">
       <img src="https://picsum.photos/id/1006/600/400">
       <h3>Smart Notes App</h3>
       <p>PWA pencatatan realtime dengan sinkronisasi offline.</p>
     </div>
 
-    <!-- PROJECT 3 -->
-    <div class="project-card">
+    <div class="project-card" onclick="window.open('#', '_blank')">
       <img src="https://picsum.photos/id/1072/600/400">
       <h3>E-Commerce Lite</h3>
       <p>Mini marketplace UI modern (JS + Stripe UI).</p>
     </div>
 
-    <!-- PROJECT 4 ✔ BARU -->
-    <div class="project-card">
+    <div class="project-card" onclick="window.open('#', '_blank')">
       <img src="https://picsum.photos/id/1044/600/400">
       <h3>Startup Landing Page</h3>
       <p>Website startup modern dengan animasi dan CTA profesional.</p>
     </div>
 
-    <!-- PROJECT 5 ✔ BARU -->
-    <div class="project-card">
+    <div class="project-card" onclick="window.open('#', '_blank')">
       <img src="https://picsum.photos/id/1024/600/400">
       <h3>AI Image Generator UI</h3>
       <p>UI konsep generator gambar AI (Clean + Dark UI).</p>
@@ -238,15 +236,30 @@ body {
   <div class="contact-box">
       <h2>Kontak</h2>
 
-      <input class="input" placeholder="Nama Anda">
-      <input class="input" placeholder="Email Anda">
-      <textarea class="input" rows="5" placeholder="Pesan Anda"></textarea>
+      <input class="input" id="nama" placeholder="Nama Anda">
+      <input class="input" id="email" placeholder="Email Anda">
+      <textarea class="input" id="pesan" rows="5" placeholder="Pesan Anda"></textarea>
 
-      <button class="send-btn">Kirim Pesan</button>
+      <button class="send-btn" onclick="kirimPesan()">Kirim Pesan</button>
   </div>
 
 </div>
 
+<!-- JS -->
+<script>
+function kirimPesan() {
+  const nama = document.getElementById("nama").value;
+  const email = document.getElementById("email").value;
+  const pesan = document.getElementById("pesan").value;
+
+  const mail = 
+    `mailto:habib08081999@gmail.com?subject=Pesan dari ${nama}&body=Email: ${email}%0A%0A${pesan}`;
+
+  window.location.href = mail;
+}
+</script>
+
 </body>
 </html>
+
 
