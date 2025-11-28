@@ -1,340 +1,383 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portofolio — abdulhabib H</title>
-  <meta name="description" content="Portofolio projek — abdulhabib H. Lihat projek, gambar, dan kontak." />
-  <meta name="color-scheme" content="dark light">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    /* ========== Root & Theme ========== */
-    :root{
-      --bg:#0b1220; --card:rgba(255,255,255,0.04); --text:#e6eef6;
-      --muted:#9aa4b2; --accent:#06b6d4; --accent-2:#7c3aed;
-      --glass: rgba(255,255,255,0.04);
-      --max-w:1100px; --radius:12px; --shadow: 0 12px 30px rgba(2,6,23,0.6);
-      --glass-2: rgba(6,182,212,0.08);
-    }
-    /* light theme */
-    [data-theme="light"]{
-      --bg:#f6f8fb; --card:rgba(2,6,23,0.03); --text:#0b1220; --muted:#475569;
-      --accent:#0b7285; --accent-2:#6b21a8;
-    }
+<title>Abdulhabib Portfolio PWA</title>
 
-    /* ========== Reset ========== */
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background:linear-gradient(180deg,var(--bg) 0%, #071226 60%); color:var(--text);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      transition:background .35s ease, color .25s ease;
-      scroll-behavior:smooth;
-    }
+<!-- META SEO -->
+<meta name="description" content="Portofolio modern Abdulhabib — Web Developer. Website cepat, animasi halus, PWA, SEO lengkap.">
+<meta name="keywords" content="Portofolio, Web Developer, Abdulhabib, PWA, Website Modern">
 
-    /* ========== Loading Screen ========== */
-    #loader {
-      position:fixed; inset:0; display:flex;align-items:center;justify-content:center;
-      background:linear-gradient(180deg, rgba(2,6,23,0.95), rgba(2,6,23,0.98)); z-index:9999;
-      flex-direction:column; gap:18px; color:var(--text);
-    }
-    .loader-box { width:120px; height:120px; border-radius:20px; display:grid; place-items:center;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      animation: loaderFloat 2.8s ease-in-out infinite;
-    }
-    @keyframes loaderFloat { 0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)} }
-    .spinner {
-      width:56px; height:56px; border-radius:50%; border:4px solid rgba(255,255,255,0.06);
-      border-top-color: var(--accent);
-      animation:spin 1s linear infinite;
-    }
-    @keyframes spin { to{transform:rotate(360deg)} }
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Abdulhabib Portfolio PWA">
+<meta property="og:description" content="Portofolio modern dengan animasi, PWA, dan UI futuristik.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://picsum.photos/seed/og/600/400">
 
-    /* ========== Floating Navbar ========== */
-    nav.navbar{
-      position:fixed; top:18px; left:50%; transform:translateX(-50%);
-      width:calc(100% - 40px); max-width:var(--max-w); z-index:90;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:14px; padding:10px 18px; display:flex; justify-content:space-between; align-items:center;
-      box-shadow:0 8px 30px rgba(2,6,23,0.6); backdrop-filter: blur(6px);
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#021024}
-    .nav-links{display:flex;gap:10px;align-items:center}
-    .nav-links a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
-    .nav-links a:hover{background:rgba(255,255,255,0.02)}
-    .theme-toggle{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:8px;cursor:pointer;color:var(--text)}
+<!-- SCHEMA JSON LD -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Person",
+ "name": "Abdulhabib",
+ "url": "https://your-domain.com",
+ "description": "Web Developer & UI Designer",
+ "jobTitle": "Frontend Developer"
+}
+</script>
 
-    /* ========== Page container ========== */
-    .container{width:100%;max-width:var(--max-w);margin:120px auto 60px;padding:0 18px}
-    header.hero{padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);box-shadow:var(--shadow);display:flex;gap:20px;align-items:center}
-    .hero-left{flex:1}
-    h1{margin:0;font-size:26px;color:var(--text)}
-    h1 span{color:var(--accent)}
-    p.lead{color:var(--muted);margin-top:8px}
-    .cta{display:inline-flex;gap:10px;margin-top:12px}
-    .btn{padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
-    .btn-primary{background:var(--accent);color:#021024}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+<!-- MANIFEST OTOMATIS -->
+<link rel="manifest" id="manifest-placeholder">
 
-    .hero-right{width:220px}
-    .avatar{width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+<meta name="theme-color" content="#00c7ff">
 
-    /* ========== Projects grid with glass cards ========== */
-    section.projects{margin-top:28px}
-    .section-title{font-size:20px;margin-bottom:14px;color:var(--text)}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px;padding:12px; border:1px solid rgba(255,255,255,0.03); overflow:hidden;
-      transition:transform .28s ease, box-shadow .28s ease, opacity .5s ease;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      opacity:0; transform: translateY(18px) scale(0.995);
-    }
-    .card.revealed{opacity:1; transform:translateY(0) scale(1)}
-    .card .thumb{border-radius:10px;overflow:hidden}
-    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px;display:block;transition:transform .45s ease}
-    .card:hover img{transform:scale(1.06)}
-    .card h3{margin:10px 0 4px 0;color:var(--text);font-size:16px}
-    .card p{margin:0;color:var(--muted);font-size:13px}
-
-    /* ========== Detail area ========== */
-    .detail{display:none;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;margin-top:18px;backdrop-filter:blur(6px)}
-    .detail.open{display:block}
-
-    /* ========== Contact (glass) ========== */
-    .contact{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.03)}
-    .contact input, .contact textarea{width:100%;padding:12px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--text);margin-bottom:10px}
-    .contact button{width:100%;padding:12px;border-radius:8px;border:0;background:var(--accent);color:#021024;font-weight:700;cursor:pointer}
-
-    /* ========== Floating WhatsApp Button ========== */
-    .wa-btn{
-      position:fixed;right:18px;bottom:20px;z-index:95;
-    }
-    .wa-btn a{
-      display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,#25D366,#128C7E);
-      color:white;padding:12px 16px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,0.45);text-decoration:none;font-weight:700;
-    }
-
-    /* ========== Scroll reveal helper classes ========== */
-    .reveal{opacity:0; transform:translateY(20px); transition:all .6s cubic-bezier(.2,.9,.2,1);}
-    .reveal.show{opacity:1; transform:translateY(0)}
-    
-    /* ========== Responsiveness ========== */
-    @media (max-width:980px){ .grid{grid-template-columns:repeat(2,1fr)} .hero{flex-direction:column;align-items:flex-start}.hero-right{width:100%;}.avatar{width:100%;height:160px} }
-    @media (max-width:600px){ .grid{grid-template-columns:1fr} .container{margin-top:100px} nav.navbar{left:8px;right:8px;transform:none;width:auto} }
-  </style>
-</head>
-<body>
-
-  <!-- LOADING SCREEN -->
-  <div id="loader" aria-hidden="false">
-    <div class="loader-box" role="status" aria-label="Memuat...">
-      <div class="spinner" aria-hidden="true"></div>
-    </div>
-    <div style="color:var(--muted);font-weight:600">Memuat portofolio…</div>
-  </div>
-
-  <!-- NAVBAR (floating) -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">AH</div>
-      <div style="font-weight:700;color:var(--text)">abdulhabib H</div>
-    </div>
-
-    <div class="nav-links" role="menubar">
-      <a href="#projects" role="menuitem">Projek</a>
-      <a href="#contact" role="menuitem">Kontak</a>
-      <button id="themeBtn" class="theme-toggle" aria-pressed="false" title="Toggle theme">🌗</button>
-    </div>
-  </nav>
-
-  <!-- CONTENT -->
-  <main class="container" id="app">
-    <header class="hero" role="banner">
-      <div class="hero-left">
-        <h1>Halo — Saya <span>abdulhabib H</span></h1>
-        <div style="font-size:14px;color:var(--muted);margin-top:6px">Membangun tampilan web modern, cepat, dan responsif.</div>
-        <p class="lead">Berikut kumpulan projek pilihan saya. Klik kartu untuk membuka demo / detail, gunakan tombol "Lihat" untuk preview, dan gunakan kontak di bawah untuk menghubungi saya.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#contact">Hubungi Saya</a>
-          <a class="btn btn-ghost" href="/resume.pdf" target="_blank" rel="noopener">Unduh CV</a>
-        </div>
-      </div>
-
-      <div class="hero-right" aria-hidden="true">
-        <div class="avatar">
-          <img src="https://picsum.photos/seed/avatar/800/800" alt="Avatar" style="width:100%;height:100%;object-fit:cover">
-        </div>
-      </div>
-    </header>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading" class="section-title">Projek Pilihan</h2>
-      <div class="grid" id="projectsGrid">
-        <!-- card template: data-href will open link -->
-        <article class="card reveal" data-href="https://github.com/DRKNETKING/project1">
-          <div class="thumb"><img src="https://picsum.photos/seed/techportal/800/600" alt="Sistem Akademik"></div>
-          <h3>Sistem Akademik Modern</h3>
-          <p>Dashboard akademik realtime (PHP + MySQL).</p>
-        </article>
-
-        <article class="card reveal" data-href="https://github.com/DRKNETKING/project2">
-          <div class="thumb"><img src="https://picsum.photos/seed/technotes/800/600" alt="Smart Notes"></div>
-          <h3>Smart Notes App</h3>
-          <p>PWA pencatatan dengan sinkronisasi & offline.</p>
-        </article>
-
-        <article class="card reveal" data-href="https://github.com/DRKNETKING/project3">
-          <div class="thumb"><img src="https://picsum.photos/seed/techecom/800/600" alt="E-Commerce"></div>
-          <h3>E-Commerce Lite</h3>
-          <p>Mini marketplace UI modern (JS + Stripe).</p>
-        </article>
-
-        <article class="card reveal" data-href="https://github.com/DRKNETKING/project4">
-          <div class="thumb"><img src="https://picsum.photos/seed/startup/800/600" alt="Startup Landing"></div>
-          <h3>Startup Landing Page</h3>
-          <p>Website startup modern dengan animasi dan CTA.</p>
-        </article>
-
-        <article class="card reveal" data-href="https://github.com/DRKNETKING/project5">
-          <div class="thumb"><img src="https://picsum.photos/seed/ai/800/600" alt="AI Image Generator"></div>
-          <h3>AI Image Generator UI</h3>
-          <p>UI konsep generator gambar AI (Clean + Dark UI).</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- DETAIL (client-side) -->
-    <div id="detailPage" class="detail" aria-live="polite"></div>
-
-    <!-- CONTACT -->
-    <section id="contact" class="contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading" style="margin-bottom:12px">Kontak</h2>
-
-      <form id="contactForm" class="contact-form" onsubmit="handleContact(event)">
-        <input id="inputName" type="text" placeholder="Nama Anda" required>
-        <input id="inputEmail" type="email" placeholder="Email Anda" required>
-        <textarea id="inputMessage" placeholder="Pesan Anda" rows="5" required></textarea>
-        <button type="submit">Kirim Pesan</button>
-      </form>
-    </section>
-
-    <footer style="margin-top:28px;color:var(--muted);font-size:13px;text-align:center">
-      &copy; <span id="year"></span> abdulhabib H. Dibuat dengan ❤️ menggunakan HTML, CSS & JS.
-    </footer>
-  </main>
-
-  <!-- WHATSAPP BUTTON -->
-  <div class="wa-btn" aria-hidden="false">
-    <a id="waLink" href="https://wa.me/6285960397582?text=Halo%20Abdulhabib%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.52 3.48A11.9 11.9 0 0 0 12 0C5.373 0 .02 5.353.02 12c0 2.108.547 4.164 1.585 5.98L0 24l6.21-1.605A11.92 11.92 0 0 0 12 24c6.627 0 12-5.373 12-12 0-3.206-1.246-6.22-3.48-8.52z" fill="#25D366"/><path d="M17.05 14.38c-.29-.15-1.72-.85-1.99-.95-.27-.11-.47-.15-.67.15s-.77.95-.94 1.15c-.17.2-.36.22-.65.08-.29-.15-1.22-.45-2.33-1.43-.86-.76-1.44-1.7-1.61-1.99-.17-.29-.02-.45.12-.6.12-.12.27-.32.41-.48.13-.15.17-.27.26-.45.08-.17.04-.33-.02-.48-.06-.16-.67-1.62-.92-2.23-.24-.59-.49-.51-.67-.52-.17-.01-.37-.01-.57-.01s-.48.07-.73.33c-.26.27-1 1-1 2.45 0 1.45 1.03 2.85 1.18 3.05.15.2 2.04 3.18 4.94 4.45 2.18 1 3.31 1.05 3.61.99.29-.06 1.06-.43 1.21-.85.15-.41.15-.76.1-.85-.06-.1-.23-.15-.51-.27z" fill="#fff"/></svg>
-      <span>Chat WhatsApp</span>
-    </a>
-  </div>
-
-<script>
-/* ---------- Helpers ---------- */
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* ---------- Loading screen ---------- */
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  setTimeout(() => { loader.style.opacity = '0'; loader.style.pointerEvents = 'none'; }, 400);
-  setTimeout(()=> loader.remove(), 800);
-});
-
-/* ---------- Theme (auto + toggle) ---------- */
-const themeBtn = document.getElementById('themeBtn');
-const saved = localStorage.getItem('theme');
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-if(saved){ document.documentElement.setAttribute('data-theme', saved); themeBtn.textContent = saved === 'light' ? '🌞' : '🌗'; }
-else { document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light'); themeBtn.textContent = prefersDark ? '🌗' : '🌞'; }
-
-themeBtn.addEventListener('click', () => {
-  const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-  const next = cur === 'light' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-  themeBtn.textContent = next === 'light' ? '🌞' : '🌗';
-});
-
-/* ---------- Scroll reveal (IntersectionObserver) ---------- */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){ entry.target.classList.add('revealed','show'); observer.unobserve(entry.target); }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-/* ---------- Make cards clickable & open detail panel ---------- */
-const cards = document.querySelectorAll('.card');
-const detailPage = document.getElementById('detailPage');
-cards.forEach(card => {
-  card.addEventListener('click', () => {
-    const href = card.dataset.href || '#';
-    // open github/project in new tab
-    if(href && href !== '#') window.open(href, '_blank');
-    // Also fill detail area (optional)
-    detailPage.innerHTML = `
-      <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
-        <img src="${card.querySelector('img')?.src}" alt="" style="width:48%;border-radius:8px;max-width:380px"/>
-        <div>
-          <h3 style="margin-top:0">${card.querySelector('h3')?.textContent}</h3>
-          <p style="color:var(--muted)">${card.querySelector('p')?.textContent}</p>
-          <a href="${href}" target="_blank" rel="noopener" class="btn btn-primary" style="display:inline-block;margin-top:12px">Kunjungi Projek</a>
-        </div>
-      </div>
-    `;
-    detailPage.classList.add('open');
-    detailPage.scrollIntoView({behavior:'smooth', block:'start'});
-  });
-});
-
-/* ---------- Contact form (mailto) ---------- */
-function handleContact(e){
-  e.preventDefault();
-  const name = document.getElementById('inputName').value.trim();
-  const email = document.getElementById('inputEmail').value.trim();
-  const message = document.getElementById('inputMessage').value.trim();
-  if(!name || !email || !message){ alert('Isi semua field terlebih dahulu.'); return; }
-
-  // Change destination email if needed
-  const targetEmail = 'habib08081999@gmail.com';
-
-  const subject = encodeURIComponent(`Pesan dari portofolio: ${name}`);
-  const body = encodeURIComponent(`Nama: ${name}\nEmail: ${email}\n\nPesan:\n${message}`);
-  const mailto = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
-
-  // open default mail client
-  window.location.href = mailto;
-
-  // reset form after a little delay
-  setTimeout(()=> document.getElementById('contactForm').reset(), 800);
+<style>
+/* ------------------ VARIABEL ------------------ */
+:root {
+  --bg: #0d1117;
+  --card: rgba(22, 27, 34, 0.55);
+  --glass: rgba(255, 255, 255, 0.08);
+  --text: #fff;
+  --blue: #00c7ff;
+  --blue2: #009dff;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.45);
+  --blur: blur(12px);
+  --transition: .35s ease;
+  --nav-bg: rgba(20, 20, 20, 0.55);
 }
 
-/* ---------- WhatsApp (optional dynamic message) ---------- */
-const waLink = document.getElementById('waLink');
-waLink.addEventListener('click', () => {
-  // placeholder message already in href; nothing else required
-});
+/* RESET */
+* {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-/* ---------- Accessibility: close detail on Esc ---------- */
-document.addEventListener('keydown', (ev) => {
-  if(ev.key === 'Escape') detailPage.classList.remove('open');
-});
+body {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
 
-/* ---------- Smooth reveal fallback for older browsers ---------- */
-setTimeout(()=> document.querySelectorAll('.reveal').forEach(r=> r.classList.add('show')), 1400);
+/* ------------------ LOADING SCREEN ------------------ */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index: 9999;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #333;
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  to {transform: rotate(360deg);}
+}
+
+/* ------------------ NAVBAR FLOATING ------------------ */
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  backdrop-filter: blur(10px);
+  background: var(--nav-bg);
+  padding: 15px 30px;
+  z-index: 6000;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+nav h2 { color: var(--blue); }
+
+/* ------------------ HEADER ------------------ */
+.header {
+  margin-top: 110px;
+  display: flex;
+  padding: 30px;
+  background: var(--glass);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: var(--blur);
+  align-items:center;
+  justify-content: space-between;
+  animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(40px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+.header img {
+  width: 160px;
+  border-radius: 20px;
+  filter: drop-shadow(0 5px 20px #000);
+}
+
+/* ------------------ PROJECT GRID ------------------ */
+.section-title {
+  margin: 40px 0 15px;
+  font-size: 26px;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 22px;
+}
+
+.project-card {
+  background: var(--glass);
+  padding: 18px;
+  border-radius: var(--radius);
+  backdrop-filter: var(--blur);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+.project-card img {
+  width: 100%;
+  height: 190px;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: .3s;
+}
+
+.project-card img:hover {
+  transform: scale(1.12);
+}
+
+/* ------------------ CONTACT ------------------ */
+.contact-box {
+  margin-top: 40px;
+  background: var(--glass);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: var(--blur);
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+  outline:none;
+}
+
+/* ------------------ WHATSAPP BUTTON ------------------ */
+#wa-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #25D366;
+  color: #fff;
+  padding: 16px 18px;
+  border-radius: 50%;
+  font-size: 26px;
+  cursor:pointer;
+  z-index: 7000;
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div id="loading">
+  <div class="loader"></div>
+  <p style="margin-top:12px;color:white">Memuat...</p>
+</div>
+
+<!-- NAV -->
+<nav>
+  <h2>Abdulhabib</h2>
+  <p id="lang-text">Portfolio</p>
+</nav>
+
+<div class="container" style="max-width:1200px;margin:auto;padding:20px">
+
+  <!-- HEADER -->
+  <div class="header">
+      <div>
+        <h1 id="hello-text">Halo — Saya <span style="color:var(--blue);">Abdulhabib</span></h1>
+        <p id="desc-text">Membangun website modern cepat & responsif.</p>
+        <br>
+        <a href="mailto:habib08081999@gmail.com"><button class="btn">Hubungi Saya</button></a>
+      </div>
+      <img src="https://picsum.photos/seed/avatar/800/800">
+  </div>
+
+  <!-- PROJECTS -->
+  <h2 class="section-title" id="project-title">Projek Pilihan</h2>
+
+  <div class="projects">
+
+    <div class="project-card">
+      <img src="https://picsum.photos/id/1015/600/400">
+      <h3>Sistem Akademik Modern</h3>
+      <p>Dashboard realtime (PHP + MySQL)</p>
+    </div>
+
+    <div class="project-card">
+      <img src="https://picsum.photos/id/1006/600/400">
+      <h3>Smart Notes App</h3>
+      <p>PWA pencatatan realtime</p>
+    </div>
+
+    <div class="project-card">
+      <img src="https://picsum.photos/id/1072/600/400">
+      <h3>E-Commerce Lite</h3>
+      <p>UI modern (JS + Stripe)</p>
+    </div>
+
+    <div class="project-card">
+      <img src="https://picsum.photos/id/1044/600/400">
+      <h3>Startup Landing Page</h3>
+      <p>Landing page modern</p>
+    </div>
+
+    <div class="project-card">
+      <img src="https://picsum.photos/id/1024/600/400">
+      <h3>AI Image Generator UI</h3>
+      <p>Dark UI futuristik</p>
+    </div>
+
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-box">
+    <h2 id="contact-title">Kontak</h2>
+
+    <input class="input" id="nama" placeholder="Nama Anda">
+    <input class="input" id="email" placeholder="Email Anda">
+    <textarea class="input" id="pesan" rows="5" placeholder="Pesan Anda"></textarea>
+
+    <button class="btn" onclick="kirimPesan()">Kirim Pesan</button>
+  </div>
+
+</div>
+
+<!-- WHATSAPP BUTTON -->
+<div id="wa-btn" onclick="window.open('https://wa.me/6285960397582')">💬</div>
+
+<script>
+// Loading
+window.onload = () => {
+  setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+  }, 1000);
+};
+
+// Auto Bahasa
+const userLang = navigator.language.startsWith("en") ? "en" : "id";
+
+if (userLang === "en") {
+  document.getElementById("hello-text").innerHTML = "Hello — I'm <span style='color:var(--blue);'>Abdulhabib</span>";
+  document.getElementById("desc-text").innerHTML = "Building modern, fast & responsive websites.";
+  document.getElementById("project-title").innerHTML = "Featured Projects";
+  document.getElementById("contact-title").innerHTML = "Contact";
+  document.getElementById("lang-text").innerHTML = "Portfolio";
+}
+
+// Kirim email
+function kirimPesan() {
+  const nama = document.getElementById("nama").value;
+  const email = document.getElementById("email").value;
+  const pesan = document.getElementById("pesan").value;
+
+  window.location.href = `mailto:habib08081999@gmail.com?subject=Pesan dari ${nama}&body=Email: ${email}%0A%0A${pesan}`;
+}
+
+/* =======================
+   MANIFEST (FILE 2) DITANAM
+==========================*/
+const manifestData = {
+  name: "Abdulhabib Portfolio PWA",
+  short_name: "HabibPWA",
+  start_url: "index.html",
+  display: "standalone",
+  background_color: "#000000",
+  theme_color: "#00c7ff",
+  description: "Portofolio modern by Abdulhabib.",
+  icons: [
+    {
+      src: "https://picsum.photos/seed/pwa/192",
+      sizes: "192x192",
+      type: "image/png"
+    },
+    {
+      src: "https://picsum.photos/seed/pwa/512",
+      sizes: "512x512",
+      type: "image/png"
+    }
+  ]
+};
+
+// buat blob manifest
+const manifestBlob = new Blob([JSON.stringify(manifestData)], {type: "application/json"});
+const manifestURL = URL.createObjectURL(manifestBlob);
+document.getElementById("manifest-placeholder").setAttribute("href", manifestURL);
+
+/* ============================
+   SERVICE WORKER (FILE 3) DITANAM
+===============================*/
+if ("serviceWorker" in navigator) {
+  const swCode = `
+    self.addEventListener("install", e => {
+      e.waitUntil(
+        caches.open("habib-cache").then(cache => {
+          return cache.addAll(["index.html"]);
+        })
+      );
+    });
+
+    self.addEventListener("fetch", e => {
+      e.respondWith(
+        caches.match(e.request).then(res => {
+          return res || fetch(e.request);
+        })
+      );
+    });
+  `;
+
+  const swBlob = new Blob([swCode], {type: "application/javascript"});
+  const swURL = URL.createObjectURL(swBlob);
+
+  navigator.serviceWorker.register(swURL);
+}
 </script>
 
 </body>
 </html>
+
 
 
 
