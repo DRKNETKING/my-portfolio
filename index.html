@@ -53,11 +53,14 @@
     .header h1{font-size:28px;margin-bottom:6px}
     .header p{opacity:.95;line-height:1.4}
 
-    /* Animated hero */
-    .hero-anim{width:260px;height:260px;border-radius:20px;overflow:hidden;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#071327 0%, rgba(0,0,0,0.25) 100%);box-shadow:0 12px 36px rgba(0,0,0,0.55)}
+    /* FEATURE CHIPS */
+    .features{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .feature-chip{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:8px 10px;border-radius:12px;font-weight:600;font-size:13px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* Animated hero (replaced with two-figur SVG animation) */
+    .hero-anim{width:300px;height:300px;border-radius:20px;overflow:hidden;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#071327 0%, rgba(0,0,0,0.25) 100%);box-shadow:0 12px 36px rgba(0,0,0,0.55)}
     .hero-anim svg{width:100%;height:100%;display:block}
 
-    /* small overlay text inside anim */
     .anim-label{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg,rgba(0,199,255,0.12),rgba(0,157,255,0.1));padding:8px 10px;border-radius:10px;font-weight:600;color:var(--text);backdrop-filter:blur(6px);font-size:13px}
 
     /* Projects */
@@ -71,17 +74,12 @@
     .btn{background:var(--blue);border:none;padding:10px 14px;border-radius:12px;color:#002;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
     .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
 
-    /* ANIMASI PENGGANTI GAMBAR (baru) */
+    /* project animated preview */
     .project-anim {
       width: 100%;
-      height: 140px; /* menjaga konsistensi tinggi sebelumnya */
+      height: 140px;
       border-radius: 10px;
-      background: linear-gradient(130deg,
-        #6a11cb,
-        #2575fc,
-        #ff6a00,
-        #ee0979
-      );
+      background: linear-gradient(130deg,#6a11cb,#2575fc,#ff6a00,#ee0979);
       background-size: 400% 400%;
       animation: gradientMove 8s ease infinite;
       position: relative;
@@ -90,7 +88,6 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
     }
 
-    /* subtle glass highlight bar */
     .project-anim::after{
       content: "";
       position: absolute;
@@ -105,7 +102,6 @@
       mix-blend-mode: overlay;
     }
 
-    /* Efek Partikel */
     .project-anim::before {
       content: "";
       position: absolute;
@@ -187,13 +183,24 @@
     <!-- Header -->
     <section class="header" aria-labelledby="intro">
       <div class="left">
-        <!-- UPDATED: projek-focused title -->
-        <h1 id="hello-text">Projek Saya — <span style="color:var(--blue)">Solusi Web & PWA</span></h1>
+        <!-- UPDATED: projek-focused title (developer voice) -->
+        <h1 id="hello-text">Proyek & Solusi — Abdulhabib, Web Engineer</h1>
 
-        <!-- NEW DESCRIPTION: menarik, singkat, actionable -->
+        <!-- NEW DESCRIPTION: developer-focused, actionable -->
         <p id="desc-text">
-          Koleksi proyek terbaik: aplikasi PWA offline-first, UI modern, dan pengalaman interaktif. Klik setiap kartu proyek untuk demo, kode, dan dokumentasi — semuanya dapat diakses, keyboard-friendly, dan siap diuji.
+          Saya membangun aplikasi web yang andal: Progressive Web Apps (offline-first), antarmuka yang dapat diakses, dan pengalaman frontend yang cepat. Fokus pada maintainability, aksesibilitas (WCAG), dan performa produksi — desain berbasis komponen untuk reuse.
         </p>
+
+        <!-- Feature chips (fiktur lebih lengkap) -->
+        <div class="features" aria-hidden="false">
+          <div class="feature-chip">⚡ Performance Budget</div>
+          <div class="feature-chip">📱 Offline-first PWA</div>
+          <div class="feature-chip">♿ A11y (WCAG)</div>
+          <div class="feature-chip">🧩 Design System</div>
+          <div class="feature-chip">🔁 Realtime Sync</div>
+          <div class="feature-chip">🔒 Auth & Role</div>
+          <div class="feature-chip">🧪 Tests & CI/CD</div>
+        </div>
 
         <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
           <a href="mailto:habib08081999@gmail.com" class="btn" aria-label="Hubungi Abdulhabib via email">Hubungi Saya</a>
@@ -201,49 +208,61 @@
         </div>
       </div>
 
-      <!-- HERO ANIMATION (modern 2025) -->
-      <div class="hero-anim" aria-hidden="false" id="hero-anim" role="img" aria-label="Animasi proyek modern 2025">
-        <!-- SVG animation: ringan, offline safe -->
-        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- HERO ANIMATION: abstrak dua figur (animasi SVG), menggantikan foto orang -->
+      <div class="hero-anim" aria-hidden="false" id="hero-anim" role="img" aria-label="Animasi dua figur abstrak mewakili kolaborasi dan UX">
+        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
           <defs>
-            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+            <linearGradient id="hg" x1="0" x2="1">
               <stop offset="0%" stop-color="#00c7ff"/>
               <stop offset="100%" stop-color="#6b00ff"/>
             </linearGradient>
-            <filter id="f1" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
-              <feBlend in="SourceGraphic" in2="blur"/>
+            <filter id="blurSmall" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" />
             </filter>
           </defs>
 
-          <!-- moving shapes for a modern 'tech' vibe -->
-          <circle cx="80" cy="120" r="40" fill="url(#g1)" opacity="0.18">
-            <animate attributeName="cx" values="60;120;80" dur="6s" repeatCount="indefinite" />
-            <animate attributeName="cy" values="100;140;120" dur="6s" repeatCount="indefinite" />
-          </circle>
-
-          <rect x="220" y="60" rx="18" ry="18" width="110" height="110" fill="#001f3f" opacity="0.12" transform="rotate(20 275 115)">
-            <animate attributeName="x" values="200;240;220" dur="7s" repeatCount="indefinite" />
-          </rect>
-
-          <g filter="url(#f1)">
-            <path d="M50 300 C150 200 250 380 350 280" stroke="url(#g1)" stroke-width="6" fill="none" stroke-linecap="round">
-              <animate attributeName="d" dur="8s" repeatCount="indefinite"
-                values="
-                  M50 300 C150 200 250 380 350 280;
-                  M30 280 C140 220 260 360 370 260;
-                  M50 300 C150 200 250 380 350 280
-                " />
-            </path>
+          <!-- background blobs -->
+          <g opacity="0.09">
+            <ellipse cx="120" cy="200" rx="110" ry="90" fill="#00c7ff" filter="url(#blurSmall)"/>
+            <ellipse cx="280" cy="180" rx="100" ry="80" fill="#6b00ff" filter="url(#blurSmall)"/>
           </g>
 
-          <!-- center card mockup -->
-          <rect x="110" y="110" rx="18" ry="18" width="180" height="120" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
-          <text x="200" y="165" text-anchor="middle" font-size="18" font-weight="700" fill="#e9f0f6">Modern UI 2025</text>
-          <text x="200" y="188" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.7)">PWA • Animasi • Offline-first</text>
+          <!-- figur kiri (abstrak) -->
+          <g id="left-figure" transform="translate(105,130)">
+            <circle cx="0" cy="0" r="28" fill="#fff" opacity="0.95" />
+            <rect x="-34" y="36" rx="16" ry="16" width="68" height="82" fill="url(#hg)" opacity="0.92" />
+            <path d="M-28,40 C-18,20 18,20 28,40" fill="rgba(0,0,0,0.06)"/>
+          </g>
+
+          <!-- figur kanan -->
+          <g id="right-figure" transform="translate(265,140)">
+            <circle cx="0" cy="0" r="28" fill="#fff" opacity="0.95" />
+            <rect x="-34" y="36" rx="16" ry="16" width="68" height="82" fill="#ffffff" opacity="0.06" />
+            <rect x="-34" y="36" rx="12" ry="12" width="68" height="82" fill="url(#hg)" opacity="0.7" transform="rotate(-6 0 80)"/>
+          </g>
+
+          <!-- connecting arc to suggest collaboration -->
+          <path d="M150 220 Q200 180 250 220" stroke="url(#hg)" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+          <!-- subtle moving dots -->
+          <g id="dots">
+            <circle cx="200" cy="120" r="4" fill="#fff" opacity="0.7">
+              <animate attributeName="cy" values="120;100;120" dur="3.4s" repeatCount="indefinite" />
+              <animate attributeName="cx" values="200;210;200" dur="3.4s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="170" cy="260" r="3" fill="#fff" opacity="0.6">
+              <animate attributeName="cy" values="260;240;260" dur="4.2s" repeatCount="indefinite" />
+              <animate attributeName="cx" values="170;160;170" dur="4.2s" repeatCount="indefinite" />
+            </circle>
+          </g>
+
+          <!-- micro text inside -->
+          <text x="200" y="345" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.8)">Kolaborasi • UX • Performant</text>
+
+          <!-- floating subtle motion for figures via CSS-anim (applied in style below) -->
         </svg>
 
-        <div class="anim-label" id="anim-label">Animasi Modern 2025</div>
+        <div class="anim-label" id="anim-label">Kolaborasi & UX</div>
       </div>
     </section>
 
@@ -399,8 +418,8 @@
     // Language auto (EN fallback)
     const userLang = navigator.language && navigator.language.startsWith('en') ? 'en' : 'id';
     if(userLang === 'en'){
-      document.getElementById('hello-text').innerHTML = "My Projects — <span style='color:var(--blue)'>Web & PWA</span>";
-      document.getElementById('desc-text').textContent = 'Featured projects: offline-first PWAs, modern UI, and interactive demos. Click each card for demo, code, and docs — fully accessible and keyboard friendly.';
+      document.getElementById('hello-text').innerHTML = "Projects & Solutions — Abdulhabib, Web Engineer";
+      document.getElementById('desc-text').textContent = 'I build reliable web apps: offline-first PWAs, accessible UIs, and performant frontends. Focused on maintainability, accessibility (WCAG), and production performance — component-driven design for reuse.';
       document.getElementById('project-title').textContent = 'Featured Projects — Modern 2025';
       document.getElementById('contact-title').textContent = 'Contact';
       document.getElementById('lang-text').textContent = 'Portfolio';
@@ -552,6 +571,7 @@
 
 </body>
 </html>
+
 
 
 
