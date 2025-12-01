@@ -43,7 +43,78 @@
     nav h2{color:var(--blue);font-weight:700}
     nav .nav-right{display:flex;gap:14px;align-items:center}
     .chip{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:12px;font-size:14px}
-    #live-clock{font-weight:600;color:rgba(255,255,255,0.9);font-size:14px;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,0.25);}
+
+    /* ANIMATED CLOCK - CENTERED */
+    #live-clock-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 801;
+    }
+
+    #live-clock {
+      font-weight: 700;
+      font-size: 22px;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      padding: 12px 20px;
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0,199,255,0.2);
+      box-shadow: 
+        0 8px 32px rgba(0,199,255,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+      animation: clockPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes clockPulse {
+      0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 
+          0 8px 32px rgba(0,199,255,0.15),
+          inset 0 1px 0 rgba(255,255,255,0.1);
+      }
+      50% { 
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 
+          0 12px 40px rgba(0,199,255,0.25),
+          inset 0 1px 0 rgba(255,255,255,0.15);
+      }
+    }
+
+    #live-date {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: dateGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes dateGlow {
+      0%, 100% { 
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.1);
+        transform: scale(1);
+      }
+      50% { 
+        background: rgba(255,255,255,0.08);
+        border-color: rgba(255,255,255,0.2);
+        transform: scale(1.02);
+      }
+    }
 
     .nav-links{display:flex;gap:10px;align-items:center}
     .nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;padding:8px 10px;border-radius:8px;font-size:14px}
@@ -132,6 +203,31 @@
       .project-anim{height:160px}
       .feature-page{grid-template-columns:1fr}
       .about-box{flex-direction:column;align-items:flex-start}
+      #live-clock-container{top:20px;transform:translateX(-50%) !important;}
+      #live-clock{font-size:18px;padding:10px 16px;}
+    }
+
+    /* Section titles styling */
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 40px 0 20px;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+      border-radius: 2px;
     }
 
     footer{margin:40px 0 120px;text-align:center;color:rgba(255,255,255,0.5)}
@@ -149,6 +245,12 @@
       <div class="chip" id="lang-text">Portfolio</div>
     </div>
 
+    <!-- CENTERED ANIMATED CLOCK -->
+    <div id="live-clock-container" aria-live="polite" title="Jam dan tanggal lokal">
+      <div id="live-clock">--:--:--</div>
+      <div id="live-date">Senin, 01 Des 2025</div>
+    </div>
+
     <div class="nav-right" role="region" aria-label="Utility">
       <div class="nav-links" aria-hidden="false">
         <a href="#projects">Projects</a>
@@ -157,7 +259,6 @@
         <a href="#contact">Kontak</a>
         <a href="#about">Tentang</a>
       </div>
-      <div id="live-clock" aria-live="polite" title="Jam lokal">--:--:--</div>
     </div>
   </nav>
 
@@ -184,8 +285,8 @@
         </div>
 
         <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <a href="mailto:habib08081999@gmail.com" class="btn" aria-label="Hubungi Abdulhabib via email">Hubungi Saya</a>
-          <button class="btn ghost" id="download-resume" aria-label="Download CV">Download CV</button>
+          <a href="mailto:habib08081999@gmail.com" class="btn" aria-label="Hubungi Abdulhabib via email" style="background:var(--blue);color:#fff;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:600;transition:var(--transition)">Hubungi Saya</a>
+          <button class="btn ghost" id="download-resume" aria-label="Download CV" style="background:rgba(255,255,255,0.1);color:var(--text);padding:10px 20px;border-radius:10px;border:1px solid rgba(255,255,255,0.2);font-weight:600;transition:var(--transition)">Download CV</button>
         </div>
       </div>
 
@@ -282,7 +383,7 @@
     <section class="feature-page" id="service-graphic">
       <div>
         <h3>Graphic</h3>
-        <p>Paket desain grafis: poster, cover, ilustrasi, asset marketing.</PW>
+        <p>Paket desain grafis: poster, cover, ilustrasi, asset marketing.</p>
         <div class="feature-grid">
           <div class="service-card" data-service="Ilustrasi" data-img="https://picsum.photos/id/1025/800/600"><h4>Ilustrasi</h4><p>Ilustrasi vektor & raster.</p></div>
           <div class="service-card" data-service="Desain Poster" data-img="https://picsum.photos/id/1041/800/600"><h4>Desain Poster</h4><p>Desain promosi & event.</p></div>
@@ -303,7 +404,7 @@
         </div>
       </div>
       <div>
-        <img src="https://picsum.photos/id/1033/1200/800" alt="PW" />
+        <img src="https://picsum.photos/id/1033/1200/800" alt="Web preview" />
       </div>
     </section>
 
@@ -375,7 +476,7 @@
 
     <!-- Pricing section -->
     <h2 class="section-title" id="pricing">Harga Paket / Layanan</h2>
-    <p>HARGA PAKET MURAH)</p>
+    <p style="color:rgba(255,255,255,0.8);font-size:16px;margin-bottom:20px;">HARGA PAKET MURAH</p>
     <section class="feature-page" aria-labelledby="pricing">
       <div>
         <div class="pricing-grid">
@@ -393,7 +494,7 @@
                 <li>Form kontak</li>
               </ul>
             </div>
-            <div class="price-cta"><button class="btn">Pilih Paket</button></div>
+            <div class="price-cta"><button class="btn" style="background:var(--blue);color:#fff;padding:8px 16px;border-radius:8px;border:none;font-weight:600;cursor:pointer">Pilih Paket</button></div>
           </div>
 
           <div class="price-card service-card" tabindex="0" role="button"
@@ -410,7 +511,7 @@
                 <li>Form & analytics</li>
               </ul>
             </div>
-            <div class="price-cta"><button class="btn">Pilih Paket</button></div>
+            <div class="price-cta"><button class="btn" style="background:var(--blue);color:#fff;padding:8px 16px;border-radius:8px;border:none;font-weight:600;cursor:pointer">Pilih Paket</button></div>
           </div>
 
           <div class="price-card service-card" tabindex="0" role="button"
@@ -427,7 +528,7 @@
                 <li>Integrasi pembayaran</li>
               </ul>
             </div>
-            <div class="price-cta"><button class="btn">Pilih Paket</button></div>
+            <div class="price-cta"><button class="btn" style="background:var(--blue);color:#fff;padding:8px 16px;border-radius:8px;border:none;font-weight:600;cursor:pointer">Pilih Paket</button></div>
           </div>
         </div>
       </div>
@@ -444,7 +545,7 @@
         <h3>Abdulhabib — Web Engineer</h3>
         <p>About Me: Saya suka membangun website modern dan cepat. Fokus saya adalah UI, animasi, dan pengalaman pengguna yang nyaman. Saya terbiasa mengerjakan project landing page, sistem sederhana, dan aplikasi berbasis web.</p>
         <p>Jika Anda membutuhkan website yang cepat, responsif, dan mudah dikelola — saya siap membantu. Untuk diskusi teknis atau permintaan penawaran, silakan kontak lewat email atau WhatsApp.</p>
-        <div style="margin-top:10px"><a href="mailto:habib08081999@gmail.com" class="btn">Email Saya</a></div>
+        <div style="margin-top:10px"><a href="mailto:habib08081999@gmail.com" class="btn" style="background:var(--blue);color:#fff;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:600;transition:var(--transition)">Email Saya</a></div>
       </div>
     </section>
 
@@ -455,8 +556,8 @@
       <input class="input" id="email" placeholder="Email Anda" aria-label="Email Anda" />
       <textarea class="input" id="pesan" rows="5" placeholder="Pesan Anda" aria-label="Pesan Anda"></textarea>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
-        <button class="btn" onclick="kirimPesan()" aria-label="Kirim pesan">Kirim Pesan</button>
-        <button class="btn ghost" id="clear-form" aria-label="Bersihkan form">Bersihkan</button>
+        <button class="btn" onclick="kirimPesan()" aria-label="Kirim pesan" style="background:var(--blue);color:#fff;padding:10px 20px;border-radius:10px;border:none;font-weight:600;cursor:pointer">Kirim Pesan</button>
+        <button class="btn ghost" id="clear-form" aria-label="Bersihkan form" style="background:rgba(255,255,255,0.1);color:var(--text);padding:10px 20px;border-radius:10px;border:1px solid rgba(255,255,255,0.2);font-weight:600;cursor:pointer">Bersihkan</button>
       </div>
     </div>
 
@@ -481,8 +582,8 @@
         </div>
         <p id="modal-desc"></p>
         <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-          <a id="modal-demo" class="btn" href="#" target="_blank" rel="noopener">Buka Demo</a>
-          <a id="modal-repo" class="btn ghost" href="#" target="_blank" rel="noopener">Lihat Repo</a>
+          <a id="modal-demo" class="btn" href="#" target="_blank" rel="noopener" style="background:var(--blue);color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600">Buka Demo</a>
+          <a id="modal-repo" class="btn ghost" href="#" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.1);color:var(--text);padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,0.2)">Lihat Repo</a>
         </div>
       </div>
     </div>
@@ -498,7 +599,7 @@
     window.addEventListener('load', ()=> {
       const ld = q('#loading'); if(ld) ld.style.display='none';
       const yr = q('#yr'); if(yr) yr.textContent = new Date().getFullYear();
-      startClock();
+      startAnimatedClock();
       initFeatureChips();
       initServiceCards();
       initModalHandlers();
@@ -507,20 +608,44 @@
       initLottieFallbacks();
     });
 
-    // Live clock
-    function startClock(){
+    // ENHANCED ANIMATED CLOCK - CENTERED WITH PULSE & GLOW EFFECTS
+    function startAnimatedClock(){
       const clockEl = q('#live-clock');
-      if(!clockEl) return;
+      const dateEl = q('#live-date');
+      if(!clockEl || !dateEl) return;
+
       function pad(n){ return n.toString().padStart(2,'0'); }
+      
       function update(){
         const now = new Date();
-        const opts = { weekday:'short', day:'2-digit', month:'short', year:'numeric' };
-        const dateStr = now.toLocaleDateString('id-ID', opts);
-        const timeStr = [pad(now.getHours()), pad(now.getMinutes()), pad(now.getSeconds())].join(':');
-        clockEl.textContent = `${dateStr} — ${timeStr}`;
+        
+        // Time formatting with smooth transitions
+        const hours = pad(now.getHours());
+        const minutes = pad(now.getMinutes());
+        const seconds = pad(now.getSeconds());
+        const timeStr = `${hours}:${minutes}:${seconds}`;
+        
+        // Indonesian date format
+        const weekdays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
+        const weekday = weekdays[now.getDay()];
+        const day = pad(now.getDate());
+        const month = months[now.getMonth()];
+        const year = now.getFullYear();
+        const dateStr = `${weekday}, ${day} ${month} ${year}`;
+        
+        // GSAP smooth text transition
+        if(typeof gsap !== 'undefined'){
+          gsap.to(clockEl, {duration: 0.6, textContent: timeStr, ease: "power2.inOut", roundProps: "textContent"});
+          gsap.to(dateEl, {duration: 0.8, textContent: dateStr, ease: "power2.inOut", roundProps: "textContent"});
+        } else {
+          clockEl.textContent = timeStr;
+          dateEl.textContent = dateStr;
+        }
       }
+      
       update();
-      setInterval(update,1000);
+      setInterval(update, 1000);
     }
 
     // Language fallback to Indonesian or English
@@ -577,11 +702,15 @@
       if(!modal) return;
 
       function openModal(data){
-        if(modalImg && data.img) { modalImg.src = data.img; modalImg.alt = data.title + ' — image'; modalImg.style.display='block'; }
-        else if(modalImg){ modalImg.style.display='none'; }
+        if(modalImg && data.img) { 
+          modalImg.src = data.img; 
+          modalImg.alt = data.title + ' — image'; 
+          modalImg.style.display='block'; 
+        } else if(modalImg){ 
+          modalImg.style.display='none'; 
+        }
         modalTitle.textContent = data.title || '';
         modalDesc.textContent = data.desc || '';
-        // pricing cards may not have demo/repo
         modalDemo.href = data.demo || '#';
         modalRepo.href = data.repo || '#';
         modal.classList.add('show');
@@ -595,13 +724,12 @@
         document.body.style.overflow = '';
       }
 
-      // open when clicking .service-card or .project-card
       qAll('.service-card, .project-card').forEach(card=>{
         card.addEventListener('click', (e)=>{
           const data = {
             title: card.dataset.title || card.dataset.service || card.querySelector('h3')?.textContent || card.querySelector('h4')?.textContent || '',
             desc: card.dataset.desc || card.querySelector('p')?.textContent || 'Deskripsi belum tersedia.',
-            img: card.dataset.img || card.querySelector('img')?.src || card.querySelector('.project-anim')?.style.backgroundImage?.slice(5,-2) || '',
+            img: card.dataset.img || card.querySelector('img')?.src || '',
             demo: card.dataset.demo || '#',
             repo: card.dataset.repo || '#'
           };
@@ -621,14 +749,12 @@
       chips.forEach(chip=>{
         chip.addEventListener('click', ()=>{
           const f = chip.dataset.feature;
-          // find corresponding section by id (service-<lowercase>)
           const id = `#service-${f.toLowerCase()}`;
           const el = document.querySelector(id);
           if(el) {
             el.scrollIntoView({behavior:'smooth', block:'start'});
             gsap && gsap.fromTo(el, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6});
           } else {
-            // fallback: open modal with brief info
             const data = { title: f, desc: `Informasi singkat tentang layanan ${f}.`, img: '' };
             const modalEl = q('#modal');
             if(modalEl) modalEl.querySelector ? modalEl.querySelector('.modal-close').click() : null;
@@ -709,7 +835,6 @@
         });
       });
 
-      // optionally hide button when installed
       window.addEventListener('appinstalled', ()=> {
         installBtn.style.display = 'none';
         deferredPrompt = null;
@@ -742,20 +867,17 @@
     (function registerSW(){
       if('serviceWorker' in navigator){
         try{
-          // service worker code string with offline caching
           const swCode = `
             const CACHE_NAME = 'habib-cache-v1';
             const OFFLINE_URLS = [
               './',
               location.pathname,
-              // assets to cache (fonts, css, main html parts)
             ];
             self.addEventListener('install', event => {
               self.skipWaiting();
               event.waitUntil(
                 caches.open(CACHE_NAME).then(cache => {
-                  // try to cache some essential routes; ignore failures
-                  return cache.addAll(OFFLINE_URLS).catch(()=>{/*non-fatal*/});
+                  return cache.addAll(OFFLINE_URLS).catch(()=>{});
                 })
               );
             });
@@ -763,7 +885,6 @@
               event.waitUntil(self.clients.claim());
             });
             self.addEventListener('fetch', event => {
-              // Network-first for html, cache-first for others
               const req = event.request;
               if(req.method !== 'GET') return;
               const accept = req.headers.get('accept') || '';
@@ -778,9 +899,8 @@
               } else {
                 event.respondWith(
                   caches.match(req).then(cached => cached || fetch(req).then(resp => {
-                    // optional: cache dynamic resources
                     return resp;
-                  }).catch(()=>{/*fail silently*/}))
+                  }).catch(() => {}))
                 );
               }
             });
@@ -805,10 +925,34 @@
       if(e.key === 'Tab') document.body.classList.add('user-is-tabbing');
     });
 
+    // Define openModal globally for feature chips
+    window.openModal = function(data) {
+      const modal = q('#modal');
+      if(!modal) return;
+      // Use the same logic as initModalHandlers
+      const modalImg = q('#modal-img');
+      const modalTitle = q('#modal-title');
+      const modalDesc = q('#modal-desc');
+      const modalDemo = q('#modal-demo');
+      const modalRepo = q('#modal-repo');
+      
+      if(modalImg && data.img) { 
+        modalImg.src = data.img; 
+        modalImg.alt = data.title + ' — image'; 
+        modalImg.style.display='block'; 
+      }
+      modalTitle.textContent = data.title || '';
+      modalDesc.textContent = data.desc || '';
+      modalDemo.href = data.demo || '#';
+      modalRepo.href = data.repo || '#';
+      modal.classList.add('show');
+    };
+
   </script>
 
 </body>
 </html>
+
 
 
 
