@@ -5,808 +5,606 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abdulhabib Portfolio PWA — FINAL</title>
 
-  <!-- SEO -->
   <meta name="description" content="Portofolio modern Abdulhabib — Web Developer. PWA, animasi, slideshow, modal responsif, dan UI glassmorphism." />
   <meta name="keywords" content="Portofolio, Web Developer, Abdulhabib, PWA, UI Modern" />
   <meta name="theme-color" content="#00c7ff">
 
-  <!-- Manifest placeholder (di-set runtime) -->
-  <link rel="manifest" id="manifest-placeholder">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
-  <!-- Lottie Web Component (LottieFiles player) -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
 
   <style>
     :root{
-      --bg:#0d1117; --card:rgba(22,27,34,0.55); --glass:rgba(255,255,255,0.06); --text:#e9f0f6;
-      --blue:#00c7ff; --blue2:#009dff; --radius:18px; --shadow:0 12px 40px rgba(0,0,0,0.45); --blur:blur(12px);
-      --transition:.32s ease;
+      --bg:#0b0f15; 
+      --card-bg: rgba(22, 27, 34, 0.7); 
+      --glass: rgba(255, 255, 255, 0.05); 
+      --glass-hover: rgba(255, 255, 255, 0.1);
+      --text: #e9f0f6;
+      --blue: #00c7ff; 
+      --purple: #bf00ff;
+      --radius: 20px; 
+      --shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+      --glow: 0 0 20px rgba(0, 199, 255, 0.3);
+      --blur: blur(16px);
+      --transition: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek Bouncy */
     }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif; scroll-behavior: smooth;}
     html,body{height:100%}
-    body{background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:120px}
+    body{background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:120px; background-image: radial-gradient(circle at top right, rgba(0,199,255,0.08), transparent 40%), radial-gradient(circle at bottom left, rgba(191,0,255,0.08), transparent 40%);}
 
     /* Loading */
     #loading{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
     .loader{width:60px;height:60px;border:6px solid #222;border-top-color:var(--blue);border-radius:50%;animation:spin 1s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* NAV */
-    nav{position:fixed;left:0;top:0;width:100%;padding:14px 26px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,12,15,0.45);backdrop-filter:blur(12px);z-index:800}
-    nav h2{color:var(--blue);font-weight:700}
-    nav .nav-right{display:flex;gap:14px;align-items:center}
-    .chip{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:12px;font-size:14px}
-    #live-clock{font-weight:600;color:rgba(255,255,255,0.9);font-size:14px;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,0.25);}
+    /* NAV BARU - Clock Center */
+    nav{
+      position:fixed; left:0; top:0; width:100%; height: 70px;
+      padding:0 26px; display:flex; justify-content:space-between; align-items:center;
+      background:rgba(11, 15, 21, 0.85); backdrop-filter:blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05);
+      z-index:800;
+    }
+    nav .nav-left { display: flex; align-items: center; gap: 14px; z-index: 2; }
+    nav h2{color:var(--blue);font-weight:700; font-size: 20px; letter-spacing: -0.5px;}
+    
+    /* Center Clock Wrapper */
+    .nav-center {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    #live-clock{
+      font-weight:600; color:var(--blue); font-size:14px; letter-spacing: 1px;
+      padding:8px 16px; border-radius:30px; 
+      background:rgba(0, 199, 255, 0.1); 
+      border: 1px solid rgba(0, 199, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 199, 255, 0.1);
+      white-space: nowrap;
+    }
 
-    .nav-links{display:flex;gap:10px;align-items:center}
-    .nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;padding:8px 10px;border-radius:8px;font-size:14px}
-    .nav-links a:hover{background:rgba(255,255,255,0.03)}
+    nav .nav-right{display:flex;gap:14px;align-items:center; z-index: 2;}
+    .chip{background:rgba(255,255,255,0.05);padding:6px 12px;border-radius:30px;font-size:12px; border:1px solid rgba(255,255,255,0.1)}
+    
+    .nav-links{display:flex;gap:4px;align-items:center}
+    .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:14px; transition: 0.3s;}
+    .nav-links a:hover{background:var(--blue); color: #000; font-weight: 600;}
 
     /* Container */
-    .container{max-width:1200px;margin:120px auto 60px;padding:20px}
+    .container{max-width:1200px;margin:100px auto 60px;padding:20px}
 
-    /* Header with slideshow/animation */
-    .header{display:flex;gap:24px;align-items:center;background:var(--glass);padding:26px;border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:var(--blur);overflow:hidden}
-    .header .left{flex:1}
-    .header h1{font-size:28px;margin-bottom:6px}
-    .header p{opacity:.95;line-height:1.4}
+    /* Header */
+    .header{
+      display:flex; gap:30px; align-items:center; 
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+      padding:40px; border-radius:30px; 
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow:var(--shadow); backdrop-filter:var(--blur); position: relative; overflow:hidden;
+    }
+    /* Glow effect behind header */
+    .header::before {
+      content:''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(0,199,255,0.05) 0%, transparent 60%);
+      z-index: -1; pointer-events: none;
+    }
+
+    .header .left{flex:1; z-index: 2;}
+    .header h1{font-size:32px; margin-bottom:12px; background: -webkit-linear-gradient(0deg, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+    .header p{opacity:.8; line-height:1.6; font-size: 15px; margin-bottom: 24px;}
+
+    /* Buttons */
+    .btn {
+      padding: 12px 24px; border-radius: 12px; background: var(--blue); color: #001; 
+      font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,199,255,0.4); }
+    .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff; }
+    .btn.ghost:hover { border-color: var(--blue); color: var(--blue); background: rgba(0,199,255,0.05); }
 
     /* FEATURE CHIPS */
-    .features{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .feature-chip{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:8px 10px;border-radius:12px;font-weight:600;font-size:13px;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .features{display:flex;gap:10px;flex-wrap:wrap;margin-bottom: 24px;}
+    .feature-chip{
+      background:rgba(255,255,255,0.03); padding:8px 16px; border-radius:20px; 
+      font-weight:500; font-size:13px; border:1px solid rgba(255,255,255,0.05); 
+      cursor:pointer; transition: 0.3s; color: rgba(255,255,255,0.7);
+    }
+    .feature-chip:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
 
-    .hero-anim{width:320px;height:320px;border-radius:20px;overflow:hidden;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#071327 0%, rgba(0,0,0,0.25) 100%);box-shadow:0 12px 36px rgba(0,0,0,0.55)}
-    .anim-label{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg,rgba(0,199,255,0.12),rgba(0,157,255,0.1));padding:8px 10px;border-radius:10px;font-weight:600;color:var(--text);backdrop-filter:blur(6px);font-size:13px}
+    /* Hero Anim */
+    .hero-anim{
+      width:340px;height:340px; border-radius:30px; overflow:hidden; flex-shrink:0; position:relative;
+      background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
+    }
+    .anim-label{
+      position:absolute; bottom:20px; left:50%; transform: translateX(-50%);
+      background:rgba(0,0,0,0.6); padding:8px 16px; border-radius:20px; 
+      font-weight:600; color:#fff; backdrop-filter:blur(8px); font-size:12px; border: 1px solid rgba(255,255,255,0.1);
+    }
 
-    /* Sections / pages for each feature */
-    .feature-page{background:var(--glass);padding:18px;border-radius:12px;margin-top:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 320px;gap:16px}
-    .feature-page img{width:100%;height:260px;object-fit:cover;border-radius:10px}
-    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:18px}
-    .service-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);display:flex;flex-direction:column}
-    .service-card:hover{transform:translateY(-8px)}
-    .service-card h4{margin:8px 0 6px}
-
-    /* project animated preview */
-    .project-anim {
-      width: 100%;
-      height: 140px;
-      border-radius: 10px;
-      background: linear-gradient(130deg,#6a11cb,#2575fc,#ff6a00,#ee0979);
-      background-size: 400% 400%;
-      animation: gradientMove 8s ease infinite;
+    /* CARD STYLING YANG LEBIH BAGUS (Modern Glow) */
+    .project-card, .service-card, .price-card {
+      background: rgba(30, 35, 45, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 20px;
+      cursor: pointer;
       position: relative;
       overflow: hidden;
-      margin-bottom: 10px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+      transition: all 0.4s var(--transition);
+      display: flex; flex-direction: column;
     }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Hover Effect */
+    .project-card:hover, .service-card:hover, .price-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      border-color: rgba(0, 199, 255, 0.5);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0, 199, 255, 0.1);
+      background: rgba(30, 35, 45, 0.7);
     }
+    /* Image inside card zoom on hover */
+    .service-card img, .project-card img { transition: transform 0.5s ease; width: 100%; border-radius: 12px; }
+    .service-card:hover img, .project-card:hover img { transform: scale(1.05); }
+
+    .project-card h3, .service-card h4 { margin: 12px 0 6px; font-size: 18px; color: #fff; }
+    .project-card p, .service-card p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* Project Gradient Animation Box */
+    .project-anim {
+      width: 100%; height: 160px; border-radius: 14px;
+      background: linear-gradient(45deg,#00c7ff,#0072ff,#bf00ff);
+      background-size: 200% 200%;
+      animation: gradientMove 6s ease infinite;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+      margin-bottom: 8px;
+    }
+    @keyframes gradientMove { 0% {background-position:0% 50%} 50% {background-position:100% 50%} 100% {background-position:0% 50%} }
+
+    /* Layout Grids */
+    .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 24px; }
+    .feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-top:18px }
+    
+    .section-title { 
+      margin-top: 80px; font-size: 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .section-title::before { content: ''; width: 4px; height: 24px; background: var(--blue); border-radius: 4px; display: block; }
+
+    /* Feature Page Styling */
+    .feature-page{
+      background:var(--glass); padding:24px; border-radius:24px; margin-top:24px; 
+      border: 1px solid rgba(255,255,255,0.05);
+      display:grid; grid-template-columns:1fr 300px; gap:30px; align-items: start;
+    }
+    .feature-page img { width: 100%; height: 240px; object-fit: cover; border-radius: 16px; opacity: 0.8; }
 
     /* Parallax */
-    .parallax{height:220px;border-radius:14px;background-image:url('https://picsum.photos/seed/parallax/1600/900');background-size:cover;background-position:center;margin:26px 0;box-shadow:var(--shadow)}
+    .parallax{height:200px;border-radius:24px;background-image:url('https://picsum.photos/seed/parallax/1600/900');background-size:cover;background-attachment: fixed; margin:40px 0; opacity: 0.6; filter: grayscale(50%); transition: 0.5s;}
+    .parallax:hover { opacity: 1; filter: grayscale(0%); }
 
     /* Pricing */
-    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:12px}
-    .price-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;text-align:center}
-    .price-card h4{margin-bottom:8px}
-    .price-amount{font-size:20px;font-weight:700;color:var(--blue);margin:8px 0}
-    .price-list{text-align:left;margin-top:8px}
-    .price-cta{margin-top:12px}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:20px}
+    .price-card{text-align:center; padding: 30px 20px;}
+    .price-amount{font-size:28px;font-weight:700;color:var(--blue);margin:12px 0}
+    .price-list ul { list-style: none; padding: 0; margin: 16px 0; text-align: left; }
+    .price-list li { margin-bottom: 8px; font-size: 14px; color: rgba(255,255,255,0.7); display: flex; gap: 8px; }
+    .price-list li::before { content: '✓'; color: var(--blue); }
+    
+    /* About & Contact */
+    .about-box{background:var(--glass);padding:30px;border-radius:24px;margin-top:24px;display:flex;gap:30px;align-items:center; border: 1px solid rgba(255,255,255,0.05);}
+    .about-box img{width:140px;height:140px;object-fit:cover;border-radius:50%; border: 3px solid var(--blue);}
+    
+    .contact-box{background:var(--glass);padding:30px;border-radius:24px;margin-top:24px; border: 1px solid rgba(255,255,255,0.05);}
+    .input{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);margin-bottom:14px;background:rgba(0,0,0,0.2);color:#fff; outline:none; transition:0.3s}
+    .input:focus { border-color: var(--blue); background: rgba(0,0,0,0.4); }
 
-    /* About */
-    .about-box{background:var(--glass);padding:18px;border-radius:12px;margin-top:18px;box-shadow:var(--shadow);display:flex;gap:16px;align-items:center}
-    .about-box img{width:160px;height:160px;object-fit:cover;border-radius:12px}
-
-    /* Contact */
-    .contact-box{background:var(--glass);padding:16px;border-radius:14px;box-shadow:var(--shadow);margin-top:18px}
-    .input{width:100%;padding:10px;border-radius:10px;border:none;margin-bottom:10px;background:rgba(255,255,255,0.03);color:var(--text);resize:vertical}
-
-    /* Floating WA & Install */
-    #wa-btn{position:fixed;right:20px;bottom:20px;background:#25D366;color:#fff;padding:14px;border-radius:50%;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900}
-    #install-btn{position:fixed;right:20px;bottom:90px;background:var(--blue);color:#002;padding:10px 14px;border-radius:12px;cursor:pointer;z-index:900;border:none}
+    /* Floating */
+    #wa-btn{position:fixed;right:25px;bottom:25px;background:#25D366;color:#fff;width: 50px; height: 50px; border-radius:50%;font-size:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4); transition: 0.3s;}
+    #wa-btn:hover { transform: scale(1.1); }
+    
+    #install-btn{position:fixed;right:25px;bottom:90px;background:var(--blue);color:#000;padding:10px 18px;border-radius:10px;cursor:pointer;z-index:900;border:none; font-weight: 700; box-shadow: 0 10px 20px rgba(0, 199, 255, 0.3);}
 
     /* Modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:10000;padding:20px}
-    .modal.show{display:flex}
-    .modal-card{background:var(--bg);padding:18px;border-radius:12px;max-width:920px;width:100%;box-shadow:0 18px 60px rgba(0,0,0,0.6);display:grid;grid-template-columns:1fr 360px;gap:16px}
-    .modal-card img{width:100%;height:320px;object-fit:cover;border-radius:8px}
-    .modal-info h3{margin-bottom:8px}
-    .modal-info p{margin-bottom:12px}
-    .modal-close{background:transparent;border:0;color:var(--text);font-size:18px;cursor:pointer}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.8);backdrop-filter: blur(8px); z-index:10000;padding:20px; opacity: 0; transition: opacity 0.3s ease;}
+    .modal.show{display:flex; opacity: 1;}
+    .modal-card{background:#161b22;padding:24px;border-radius:20px;max-width:900px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.8);display:grid;grid-template-columns:1fr 340px;gap:24px; border: 1px solid rgba(255,255,255,0.1);}
+    .modal-card img{width:100%;height:300px;object-fit:cover;border-radius:12px}
+    .modal-close{background:transparent;border:0;color:var(--text);font-size:24px;cursor:pointer; float: right;}
 
     /* Responsive */
     @media(max-width:900px){
-      .header{flex-direction:column;align-items:flex-start}
+      .header{flex-direction:column;align-items:flex-start; padding: 24px;}
+      .header h1 { font-size: 26px; }
       .modal-card{grid-template-columns:1fr}
-      .hero-anim{width:100%;height:240px}
-      .project-anim{height:160px}
-      .feature-page{grid-template-columns:1fr}
+      .hero-anim{width:100%;height:220px; margin-top: 20px;}
+      .feature-page{grid-template-columns:1fr; padding: 20px;}
       .about-box{flex-direction:column;align-items:flex-start}
+      
+      /* Mobile Nav Adjustments */
+      nav { justify-content: space-between; padding: 0 20px; }
+      .nav-links { display: none; } /* Hide links on mobile for simplicity */
+      .nav-center { position: relative; left: auto; top: auto; transform: none; }
+      #live-clock { font-size: 11px; padding: 6px 10px; }
     }
-
-    footer{margin:40px 0 120px;text-align:center;color:rgba(255,255,255,0.5)}
+    
+    footer{margin:40px 0 120px;text-align:center;color:rgba(255,255,255,0.3); font-size: 13px;}
   </style>
 </head>
 <body>
 
-  <!-- Loading -->
-  <div id="loading" role="status" aria-live="polite"><div class="loader" aria-hidden="true"></div><p style="color:#fff;margin-top:12px">Memuat...</p></div>
+  <div id="loading"><div class="loader"></div><p style="color:#fff;margin-top:12px;font-size:14px;letter-spacing:1px">MEMUAT PORTFOLIO</p></div>
 
-  <!-- NAV -->
-  <nav role="navigation" aria-label="Main Navigation">
-    <div style="display:flex;align-items:center;gap:14px">
+  <nav>
+    <div class="nav-left">
       <h2>Abdulhabib</h2>
-      <div class="chip" id="lang-text">Portfolio</div>
+      <div class="chip" id="lang-text">ID</div>
     </div>
 
-    <div class="nav-right" role="region" aria-label="Utility">
-      <div class="nav-links" aria-hidden="false">
+    <div class="nav-center">
+      <div id="live-clock" title="Jam lokal">--:--:--</div>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-links">
         <a href="#projects">Projects</a>
         <a href="#services">Layanan</a>
         <a href="#pricing">Harga</a>
         <a href="#contact">Kontak</a>
-        <a href="#about">Tentang</a>
       </div>
-      <div id="live-clock" aria-live="polite" title="Jam lokal">--:--:--</div>
     </div>
   </nav>
 
-  <main class="container" role="main">
+  <main class="container">
 
-    <!-- Header -->
-    <section class="header" aria-labelledby="intro">
+    <section class="header" id="home">
       <div class="left">
-        <h1 id="hello-text">Proyek & Solusi — Abdulhabib, Web Engineer</h1>
-
-        <p id="desc-text">
-          Saya membangun aplikasi web yang andal: Progressive Web Apps (offline-first), antarmuka yang dapat diakses, dan pengalaman frontend yang cepat. Fokus pada maintainability, aksesibilitas (WCAG), dan performa produksi — desain berbasis komponen untuk reuse.
-        </p>
-
-        <div class="features" id="feature-chips" aria-hidden="false">
+        <div class="features" id="feature-chips">
           <div class="feature-chip" data-feature="UI">UI</div>
-          <div class="feature-chip" data-feature="Graphic">Graphic</div>
           <div class="feature-chip" data-feature="Web">Web</div>
           <div class="feature-chip" data-feature="Mobile">Mobile</div>
-          <div class="feature-chip" data-feature="Video">Video</div>
           <div class="feature-chip" data-feature="3D">3D</div>
           <div class="feature-chip" data-feature="Branding">Branding</div>
-          <div class="feature-chip" data-feature="Photo">Photo</div>
         </div>
 
-        <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <a href="mailto:habib08081999@gmail.com" class="btn" aria-label="Hubungi Abdulhabib via email">Hubungi Saya</a>
-          <button class="btn ghost" id="download-resume" aria-label="Download CV">Download CV</button>
+        <h1 id="hello-text">Membangun Solusi Digital — Modern & Cepat</h1>
+
+        <p id="desc-text">
+          Saya Abdulhabib, Web Engineer. Fokus menciptakan aplikasi web yang andal (PWA), antarmuka yang bersih, dan performa produksi tinggi. Desain berbasis komponen untuk skalabilitas.
+        </p>
+
+        <div style="margin-top:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <a href="#contact" class="btn">Mulai Proyek</a>
+          <button class="btn ghost" id="download-resume">Download CV</button>
         </div>
       </div>
 
-      <!-- HERO (Lottie + GSAP) -->
-      <div class="hero-anim" aria-hidden="false" id="hero-anim" role="img" aria-label="Animasi kolaborasi">
-        <!-- lottie player (fallback image if not supported) -->
+      <div class="hero-anim" id="hero-anim">
         <lottie-player id="hero-lottie" src="https://assets10.lottiefiles.com/packages/lf20_jtbfg2nb.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%"></lottie-player>
-        <div class="anim-label" id="anim-label">Kolaborasi & UX</div>
+        <div class="anim-label">Technology & Collaboration</div>
       </div>
     </section>
 
-    <div class="parallax" role="img" aria-label="background"></div>
+    <div class="parallax"></div>
 
-    <!-- Projects -->
-    <h2 class="section-title" id="project-title">Projek Pilihan — Modern 2025</h2>
+    <h2 class="section-title" id="project-title">Projek Pilihan</h2>
     <div class="projects" id="projects">
 
-      <!-- sample project cards (same as sebelumnya, now animated with GSAP) -->
-      <article class="project-card service-card" tabindex="0" role="button"
+      <article class="project-card" 
                data-title="Sistem Akademik Modern"
-               data-desc="Dashboard realtime (PHP + MySQL). Fitur login, role-based, live update."
+               data-desc="Dashboard realtime (PHP + MySQL). Fitur login, role-based, live update nilai dan jadwal."
                data-img="https://picsum.photos/id/1015/1200/800"
-               data-demo="#"
-               data-repo="#">
-        <div class="project-anim" aria-hidden="true" title="Preview Sistem Akademik Modern"></div>
-        <h3>Sistem Akademik Modern</h3>
-        <p>Dashboard realtime (PHP + MySQL)</p>
+               data-demo="#" data-repo="#">
+        <div class="project-anim"></div>
+        <h3>Sistem Akademik</h3>
+        <p>Dashboard Realtime (PHP/MySQL)</p>
       </article>
 
-      <article class="project-card service-card" tabindex="0" role="button"
-               data-title="Smart Notes App"
-               data-desc="Aplikasi PWA realtime. Offline-first, sinkronisasi, dan notifikasi."
+      <article class="project-card"
+               data-title="Smart Notes PWA"
+               data-desc="Aplikasi pencatat offline-first. Sinkronisasi otomatis saat online kembali."
                data-img="https://picsum.photos/id/1006/1200/800"
-               data-demo="#"
-               data-repo="#">
-        <div class="project-anim" aria-hidden="true" title="Preview Smart Notes App"></div>
+               data-demo="#" data-repo="#">
+        <div class="project-anim" style="animation-duration: 4s; filter: hue-rotate(45deg);"></div>
         <h3>Smart Notes App</h3>
-        <p>Aplikasi PWA realtime</p>
+        <p>PWA Offline-First</p>
       </article>
 
-      <article class="project-card service-card" tabindex="0" role="button"
+      <article class="project-card"
                data-title="E-Commerce Lite"
-               data-desc="UI modern (JS + Stripe). Keranjang, checkout, pembayaran."
+               data-desc="Platform jual beli ringan dengan payment gateway midtrans."
                data-img="https://picsum.photos/id/1072/1200/800"
-               data-demo="#"
-               data-repo="#">
-        <div class="project-anim" aria-hidden="true" title="Preview E-Commerce Lite"></div>
+               data-demo="#" data-repo="#">
+        <div class="project-anim" style="animation-duration: 8s; filter: hue-rotate(90deg);"></div>
         <h3>E-Commerce Lite</h3>
-        <p>UI modern (JS + Stripe)</p>
+        <p>Jual Beli Modern</p>
       </article>
-
-      <article class="project-card service-card" tabindex="0" role="button"
-               data-title="AI Image Generator"
-               data-desc="AI UI futuristik. Integrasi model generatif untuk preview images."
+      
+       <article class="project-card"
+               data-title="AI Generator UI"
+               data-desc="Antarmuka untuk generate image menggunakan API Stable Diffusion."
                data-img="https://picsum.photos/id/1024/1200/800"
-               data-demo="#"
-               data-repo="#">
-        <div class="project-anim" aria-hidden="true" title="Preview AI Image Generator"></div>
-        <h3>AI Image Generator</h3>
-        <p>AI UI futuristik</p>
+               data-demo="#" data-repo="#">
+        <div class="project-anim" style="animation-duration: 5s; filter: hue-rotate(180deg);"></div>
+        <h3>AI Image UI</h3>
+        <p>Futuristic Interface</p>
       </article>
 
     </div>
 
-    <!-- All Services / Feature Pages -->
-    <h2 class="section-title" id="services">Layanan & Fitur</h2>
+    <h2 class="section-title" id="services">Layanan & Keahlian</h2>
 
     <section class="feature-page" id="service-ui">
       <div>
-        <h3>UI / Frontend</h3>
-        <p>Mendesain dan mengimplementasikan antarmuka modern: component-driven, responsive, accessible (WCAG), performa tinggi.</p>
-        <div class="feature-grid" id="services-grid">
-          <!-- cards dynamically created by JS (but include fallback sample) -->
-          <div class="service-card" data-service="UI Design" data-img="https://picsum.photos/id/1003/800/600">
-            <h4>UI Design</h4>
-            <p>Design sistem, prototipe Figma, dan kit UI.</p>
-          </div>
-          <div class="service-card" data-service="Frontend Dev" data-img="https://picsum.photos/id/1005/800/600">
-            <h4>Frontend Dev</h4>
-            <p>React/Vue/Svelte, PWA, optimasi performa.</p>
-          </div>
-          <div class="service-card" data-service="A11y & Testing" data-img="https://picsum.photos/id/1012/800/600">
-            <h4>A11y & Testing</h4>
-            <p>Audit aksesibilitas dan testing otomatis.</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <img src="https://picsum.photos/id/1000/1200/800" alt="UI preview" />
-      </div>
-    </section>
-
-    <!-- Repeat sections for other categories (Graphic, Web, Mobile, Video, 3D, Branding, Photo) -->
-    <section class="feature-page" id="service-graphic">
-      <div>
-        <h3>Graphic</h3>
-        <p>Paket desain grafis: poster, cover, ilustrasi, asset marketing.</PW>
+        <h3 style="color:var(--blue); margin-bottom: 10px;">UI / Frontend Development</h3>
+        <p>Desain antarmuka yang tidak hanya indah, tapi juga fungsional dan aksesibel.</p>
         <div class="feature-grid">
-          <div class="service-card" data-service="Ilustrasi" data-img="https://picsum.photos/id/1025/800/600"><h4>Ilustrasi</h4><p>Ilustrasi vektor & raster.</p></div>
-          <div class="service-card" data-service="Desain Poster" data-img="https://picsum.photos/id/1041/800/600"><h4>Desain Poster</h4><p>Desain promosi & event.</p></div>
+          <div class="service-card" data-title="UI Design System" data-desc="Pembuatan design system lengkap di Figma.">
+            <h4>Design System</h4>
+            <p>Figma & Prototyping</p>
+          </div>
+          <div class="service-card" data-title="Frontend Code" data-desc="Implementasi desain ke kode React/Vue yang bersih.">
+            <h4>Frontend Dev</h4>
+            <p>React / Vue / Tailwind</p>
+          </div>
         </div>
       </div>
       <div>
-        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_mf6h6s6p.json" background="transparent" speed="1" loop autoplay style="width:100%;height:260px"></lottie-player>
+        <img src="https://picsum.photos/id/1/800/600" alt="UI" />
       </div>
     </section>
 
     <section class="feature-page" id="service-web">
       <div>
-        <h3>Web</h3>
-        <p>Pengembangan website & webapps: backend, integrasi API, payment gateway, deployment CI/CD.</p>
+        <h3 style="color:var(--blue); margin-bottom: 10px;">Web Backend & API</h3>
+        <p>Pondasi yang kuat untuk aplikasi skala besar. Database teroptimasi dan API cepat.</p>
         <div class="feature-grid">
-          <div class="service-card" data-service="Fullstack Web" data-img="https://picsum.photos/id/1011/800/600"><h4>Fullstack Web</h4><p>Backend & frontend integrasi.</p></div>
-          <div class="service-card" data-service="E-Commerce" data-img="https://picsum.photos/id/1031/800/600"><h4>E-Commerce</h4><p>Checkout, inventory, payment.</p></div>
+           <div class="service-card" data-title="REST API" data-desc="Pembuatan API yang aman dan cepat.">
+            <h4>REST API</h4>
+            <p>NodeJS / PHP</p>
+          </div>
+          <div class="service-card" data-title="Database" data-desc="Optimasi query database untuk data besar.">
+            <h4>Database</h4>
+            <p>MySQL / Mongo</p>
+          </div>
         </div>
       </div>
       <div>
-        <img src="https://picsum.photos/id/1033/1200/800" alt="PW" />
+        <img src="https://picsum.photos/id/2/800/600" alt="Web" />
       </div>
     </section>
 
-    <section class="feature-page" id="service-mobile">
+     <section class="feature-page" id="service-mobile">
       <div>
-        <h3>Mobile</h3>
-        <p>App mobile hybrid / native, integrasi push notification dan offline sync.</p>
+        <h3 style="color:var(--blue); margin-bottom: 10px;">Mobile & Apps</h3>
+        <p>Aplikasi hybrid yang bisa berjalan di Android dan iOS dengan satu basis kode.</p>
         <div class="feature-grid">
-          <div class="service-card" data-service="Hybrid App" data-img="https://picsum.photos/id/1060/800/600"><h4>Hybrid App</h4><p>Ionic / React Native.</p></div>
-          <div class="service-card" data-service="Native" data-img="https://picsum.photos/id/1050/800/600"><h4>Native</h4><p>Android / iOS basics.</p></div>
+          <div class="service-card"><h4>Hybrid App</h4><p>React Native / Flutter</p></div>
         </div>
       </div>
       <div>
-        <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:260px"></lottie-player>
+         <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:220px"></lottie-player>
       </div>
     </section>
 
-    <section class="feature-page" id="service-video">
-      <div>
-        <h3>Video</h3>
-        <p>Edit & produksi video pendek untuk promosi, animasi motion grafis, dan video presentasi.</p>
-        <div class="feature-grid">
-          <div class="service-card" data-service="Motion Graphics" data-img="https://picsum.photos/id/1070/800/600"><h4>Motion Graphics</h4><p>Animation & explainer.</p></div>
-        </div>
-      </div>
-      <div>
-        <img src="https://picsum.photos/id/1074/1200/800" alt="Video preview" />
-      </div>
-    </section>
-
-    <section class="feature-page" id="service-3d">
-      <div>
-        <h3>3D</h3>
-        <p>Model 3D sederhana, rendering, dan preview AR/VR ringan.</p>
-        <div class="feature-grid">
-          <div class="service-card" data-service="Model 3D" data-img="https://picsum.photos/id/1080/800/600"><h4>Model 3D</h4><p>Assets & rendering.</p></div>
-        </div>
-      </div>
-      <div>
-        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_6x8d9hzh.json" background="transparent" speed="1" loop autoplay style="width:100%;height:260px"></lottie-player>
-      </div>
-    </section>
-
-    <section class="feature-page" id="service-branding">
-      <div>
-        <h3>Branding</h3>
-        <p>Identitas merek: logo, guideline, dan packaging design.</p>
-        <div class="feature-grid">
-          <div class="service-card" data-service="Logo Design" data-img="https://picsum.photos/id/109/800/600"><h4>Logo Design</h4><p>Identitas visual.</p></div>
-        </div>
-      </div>
-      <div>
-        <img src="https://picsum.photos/id/119/1200/800" alt="Branding preview" />
-      </div>
-    </section>
-
-    <section class="feature-page" id="service-photo">
-      <div>
-        <h3>Photo</h3>
-        <p>Foto produk, retouching, dan editorial photography.</p>
-        <div class="feature-grid">
-          <div class="service-card" data-service="Product Photo" data-img="https://picsum.photos/id/200/800/600"><h4>Product Photo</h4><p>Studio & editing.</p></div>
-        </div>
-      </div>
-      <div>
-        <img src="https://picsum.photos/id/201/1200/800" alt="Photo preview" />
-      </div>
-    </section>
-
-    <!-- Pricing section -->
-    <h2 class="section-title" id="pricing">Harga Paket / Layanan</h2>
-    <p>HARGA PAKET MURAH)</p>
-    <section class="feature-page" aria-labelledby="pricing">
-      <div>
+    <h2 class="section-title" id="pricing">Paket Harga</h2>
+    <section class="feature-page">
+      <div style="width:100%; grid-column: span 2;">
         <div class="pricing-grid">
-          <div class="price-card service-card" tabindex="0" role="button"
-               data-title="Paket Basic"
-               data-desc="Landing page sederhana — satu halaman responsif, optimasi performa dasar, dan kontak form."
-               data-img="https://picsum.photos/id/250/900/600"
-               data-price="Rp 250.000">
+          
+          <div class="price-card service-card" data-title="Paket Basic">
             <h4>Paket Basic</h4>
-            <div class="price-amount">Rp 250.000</div>
+            <div class="price-amount">Rp 250k</div>
             <div class="price-list">
               <ul>
-                <li>1 halaman landing</li>
-                <li>Responsive</li>
-                <li>Form kontak</li>
+                <li>Landing Page 1 Halaman</li>
+                <li>Responsive Mobile</li>
+                <li>Gratis Hosting 1 Bulan</li>
               </ul>
             </div>
-            <div class="price-cta"><button class="btn">Pilih Paket</button></div>
+            <button class="btn ghost" style="width:100%">Pilih</button>
           </div>
 
-          <div class="price-card service-card" tabindex="0" role="button"
-               data-title="Paket Standard"
-               data-desc="Website 3–5 halaman: homepage, about, layanan, kontak — optimasi SEO dasar & integrasi analytics."
-               data-img="https://picsum.photos/id/251/900/600"
-               data-price="Rp 500.000">
-            <h4>Paket Standard</h4>
-            <div class="price-amount">Rp 500.000</div>
+          <div class="price-card service-card" data-title="Paket Standard" style="border-color: var(--blue); box-shadow: 0 0 15px rgba(0,199,255,0.1);">
+            <div style="position:absolute; top:0; right:0; background:var(--blue); color:#000; font-size:10px; padding:4px 8px; border-bottom-left-radius:10px; font-weight:700">POPULAR</div>
+            <h4>Paket Business</h4>
+            <div class="price-amount">Rp 750k</div>
             <div class="price-list">
               <ul>
-                <li>3–5 halaman</li>
-                <li>SEO dasar</li>
-                <li>Form & analytics</li>
+                <li>5 Halaman Website</li>
+                <li>SEO Dasar Google</li>
+                <li>Form Kontak & Email</li>
+                <li>Analytics</li>
               </ul>
             </div>
-            <div class="price-cta"><button class="btn">Pilih Paket</button></div>
+            <button class="btn" style="width:100%">Pilih</button>
           </div>
 
-          <div class="price-card service-card" tabindex="0" role="button"
-               data-title="Paket Premium"
-               data-desc="Website bisnis lengkap + admin panel, integrasi payment & fitur khusus. Cocok untuk usaha menengah."
-               data-img="https://picsum.photos/id/252/900/600"
-               data-price="Rp 1.000.000">
-            <h4>Paket Premium</h4>
-            <div class="price-amount">Rp 1.000.000</div>
+          <div class="price-card service-card" data-title="Paket Custom">
+             <h4>Custom App</h4>
+            <div class="price-amount">Hubungi</div>
             <div class="price-list">
               <ul>
-                <li>Website lengkap</li>
-                <li>Admin panel</li>
-                <li>Integrasi pembayaran</li>
+                <li>Sistem Informasi Kompleks</li>
+                <li>E-Commerce / Toko Online</li>
+                <li>Integrasi API Khusus</li>
               </ul>
             </div>
-            <div class="price-cta"><button class="btn">Pilih Paket</button></div>
+            <button class="btn ghost" style="width:100%">Diskusi</button>
           </div>
+
         </div>
-      </div>
-      <div>
-        <img src="https://picsum.photos/id/253/1200/800" alt="Pricing preview" />
       </div>
     </section>
 
-    <!-- About -->
     <h2 class="section-title" id="about">Tentang Saya</h2>
-    <section class="about-box" id="about-box">
-      <img src="https://picsum.photos/seed/habib/400/400" alt="Foto Abdulhabib" />
+    <section class="about-box">
+      <img src="https://picsum.photos/seed/habib/400/400" alt="Abdulhabib" />
       <div>
         <h3>Abdulhabib — Web Engineer</h3>
-        <p>About Me: Saya suka membangun website modern dan cepat. Fokus saya adalah UI, animasi, dan pengalaman pengguna yang nyaman. Saya terbiasa mengerjakan project landing page, sistem sederhana, dan aplikasi berbasis web.</p>
-        <p>Jika Anda membutuhkan website yang cepat, responsif, dan mudah dikelola — saya siap membantu. Untuk diskusi teknis atau permintaan penawaran, silakan kontak lewat email atau WhatsApp.</p>
-        <div style="margin-top:10px"><a href="mailto:habib08081999@gmail.com" class="btn">Email Saya</a></div>
+        <p style="margin: 10px 0; line-height:1.6; color:rgba(255,255,255,0.8)">
+          Saya adalah pengembang web yang berdedikasi dengan fokus pada pembuatan antarmuka pengguna yang menarik dan performa backend yang solid. Berpengalaman dalam stack modern dan selalu mengikuti tren teknologi terbaru di tahun 2025.
+        </p>
+        <a href="mailto:habib08081999@gmail.com" class="btn">Kirim Email</a>
       </div>
     </section>
 
-    <!-- Contact -->
     <div class="contact-box" id="contact">
-      <h2 id="contact-title">Kontak</h2>
-      <input class="input" id="nama" placeholder="Nama Anda" aria-label="Nama Anda" />
-      <input class="input" id="email" placeholder="Email Anda" aria-label="Email Anda" />
-      <textarea class="input" id="pesan" rows="5" placeholder="Pesan Anda" aria-label="Pesan Anda"></textarea>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
-        <button class="btn" onclick="kirimPesan()" aria-label="Kirim pesan">Kirim Pesan</button>
-        <button class="btn ghost" id="clear-form" aria-label="Bersihkan form">Bersihkan</button>
+      <h2 style="margin-bottom:16px; color:var(--blue)">Hubungi Saya</h2>
+      <div style="display:grid; gap:10px;">
+        <input class="input" id="nama" placeholder="Nama Lengkap" />
+        <input class="input" id="email" placeholder="Alamat Email" />
+        <textarea class="input" id="pesan" rows="4" placeholder="Tulis pesan proyek Anda di sini..."></textarea>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:10px">
+        <button class="btn" onclick="kirimPesan()">Kirim Pesan</button>
+        <button class="btn ghost" id="clear-form">Reset</button>
       </div>
     </div>
 
-    <footer>© <span id="yr"></span> Built with ❤️ by Abdulhabib — © 2023. Dilindungi oleh Hukum Republik Indonesia.</footer>
+    <footer>
+      © <span id="yr"></span> Abdulhabib. All Rights Reserved. <br>
+      Dibuat dengan ❤️ di Tangerang Selatan.
+    </footer>
 
   </main>
 
-  <!-- Floating WA & Install -->
-  <button id="install-btn" style="display:none" title="Install App">Install</button>
-  <div id="wa-btn" title="Chat WhatsApp" onclick="window.open('https://wa.me/6285960397582','_blank')" role="button" aria-label="Chat WhatsApp">💬</div>
+  <button id="install-btn" style="display:none">Install App</button>
+  <div id="wa-btn" onclick="window.open('https://wa.me/6285960397582','_blank')">💬</div>
 
-  <!-- Modal -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-card" role="document">
+  <div class="modal" id="modal">
+    <div class="modal-card">
       <div id="modal-media">
-        <img id="modal-img" src="" alt="Project image" />
+        <img id="modal-img" src="" alt="Detail" />
       </div>
       <div class="modal-info">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <h3 id="modal-title"></h3>
-          <button class="modal-close" id="modal-close" aria-label="Tutup">✕</button>
+        <div style="display:flex;justify-content:space-between;align-items:start">
+          <h3 id="modal-title" style="color:var(--blue); font-size:24px;">Judul</h3>
+          <button class="modal-close" id="modal-close">✕</button>
         </div>
-        <p id="modal-desc"></p>
-        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-          <a id="modal-demo" class="btn" href="#" target="_blank" rel="noopener">Buka Demo</a>
-          <a id="modal-repo" class="btn ghost" href="#" target="_blank" rel="noopener">Lihat Repo</a>
+        <p id="modal-desc" style="margin:16px 0; line-height:1.6; color:rgba(255,255,255,0.8)"></p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a id="modal-demo" class="btn" href="#" target="_blank">Live Demo</a>
+          <a id="modal-repo" class="btn ghost" href="#" target="_blank">Source Code</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Service Worker registration & App logic -->
   <script>
-    // Defensive helper
-    function q(el){ return document.querySelector(el); }
-    function qAll(el){ return Array.from(document.querySelectorAll(el)); }
+    // --- UTILITIES ---
+    const q = (el) => document.querySelector(el);
+    const qAll = (el) => document.querySelectorAll(el);
 
-    // Remove loading and init UI on load
-    window.addEventListener('load', ()=> {
-      const ld = q('#loading'); if(ld) ld.style.display='none';
-      const yr = q('#yr'); if(yr) yr.textContent = new Date().getFullYear();
+    // --- ON LOAD ---
+    window.addEventListener('load', () => {
+      // Hide Loader
+      const ld = q('#loading');
+      if(ld) {
+        ld.style.opacity = '0';
+        setTimeout(() => ld.style.display='none', 500);
+      }
+      
+      q('#yr').textContent = new Date().getFullYear();
       startClock();
-      initFeatureChips();
-      initServiceCards();
-      initModalHandlers();
-      initInstallPrompt();
+      initInteractions();
       initGSAP();
-      initLottieFallbacks();
     });
 
-    // Live clock
+    // --- CLOCK (CENTERED) ---
     function startClock(){
-      const clockEl = q('#live-clock');
-      if(!clockEl) return;
-      function pad(n){ return n.toString().padStart(2,'0'); }
+      const el = q('#live-clock');
       function update(){
         const now = new Date();
-        const opts = { weekday:'short', day:'2-digit', month:'short', year:'numeric' };
-        const dateStr = now.toLocaleDateString('id-ID', opts);
-        const timeStr = [pad(now.getHours()), pad(now.getMinutes()), pad(now.getSeconds())].join(':');
-        clockEl.textContent = `${dateStr} — ${timeStr}`;
+        // Format: SEN, 02 DEC | 14:30:00
+        const dateOpt = { weekday:'short', day:'2-digit', month:'short' };
+        const timeStr = now.toLocaleTimeString('id-ID', {hour12:false});
+        const dateStr = now.toLocaleDateString('id-ID', dateOpt).toUpperCase();
+        el.textContent = `${dateStr} • ${timeStr}`;
       }
+      setInterval(update, 1000);
       update();
-      setInterval(update,1000);
     }
 
-    // Language fallback to Indonesian or English
-    const userLang = navigator.language && navigator.language.startsWith('en') ? 'en' : 'id';
-    if(userLang === 'en'){
-      const map = {
-        'hello-text': "Projects & Solutions — Abdulhabib, Web Engineer",
-        'desc-text': 'I build reliable web apps: offline-first PWAs, accessible UIs, and performant frontends. Focused on maintainability, accessibility (WCAG), and production performance — component-driven design for reuse.',
-        'project-title': 'Featured Projects — Modern 2025',
-        'contact-title': 'Contact',
-        'lang-text': 'Portfolio'
-      };
-      Object.keys(map).forEach(id=>{
-        const el = q('#'+id);
-        if(el) el.textContent = map[id];
-      });
-    }
-
-    // Form actions
+    // --- FORM & ACTIONS ---
     function kirimPesan(){
-      const nama = (q('#nama') && q('#nama').value) || 'Unknown';
-      const email = (q('#email') && q('#email').value) || 'no-reply';
-      const pesan = (q('#pesan') && q('#pesan').value) || '';
-      const subj = encodeURIComponent('Pesan dari ' + nama);
-      const body = encodeURIComponent('Email: ' + email + '\n\n' + pesan);
-      window.location.href = `mailto:habib08081999@gmail.com?subject=${subj}&body=${body}`;
+      const n = q('#nama').value, e = q('#email').value, p = q('#pesan').value;
+      if(!n || !p) return alert('Mohon isi nama dan pesan.');
+      const link = `mailto:habib08081999@gmail.com?subject=Project dari ${n}&body=Email: ${e}%0D%0A%0D%0A${p}`;
+      window.location.href = link;
     }
-    const clearBtn = q('#clear-form');
-    if(clearBtn) clearBtn.addEventListener('click',()=>{
-      const n = q('#nama'), e = q('#email'), p = q('#pesan');
-      if(n) n.value=''; if(e) e.value=''; if(p) p.value='';
+    q('#clear-form').addEventListener('click', () => {
+      q('#nama').value=''; q('#email').value=''; q('#pesan').value='';
     });
 
-    // Download resume (generate simple file)
-    const dl = q('#download-resume');
-    if(dl){
-      dl.addEventListener('click',()=>{
-        const cv = `Abdulhabib - Frontend Developer\nEmail: habib08081999@gmail.com\nSkills: HTML, CSS, JS, PWA, PHP, MySQL\nProfil: Membangun UI/UX modern, performa cepat, dan pengalaman offline-first (2025).`;
-        const blob = new Blob([cv],{type:'text/plain'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a'); a.href = url; a.download = 'Abdulhabib_CV.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-      });
-    }
+    q('#download-resume').addEventListener('click', () => {
+        alert("Simulasi: Mengunduh CV Abdulhabib...");
+    });
 
-    // Modal logic (single modal for services & projects)
-    function initModalHandlers(){
+    // --- MODAL LOGIC ---
+    function initInteractions(){
       const modal = q('#modal');
-      const modalImg = q('#modal-img');
-      const modalTitle = q('#modal-title');
-      const modalDesc = q('#modal-desc');
-      const modalDemo = q('#modal-demo');
-      const modalRepo = q('#modal-repo');
-      const closeBtn = q('#modal-close');
-      if(!modal) return;
+      const close = q('#modal-close');
+      
+      const openModal = (card) => {
+        const title = card.dataset.title || card.querySelector('h3')?.textContent || 'Detail';
+        const desc = card.dataset.desc || 'Deskripsi detail belum tersedia untuk proyek ini.';
+        const img = card.dataset.img;
+        
+        q('#modal-title').textContent = title;
+        q('#modal-desc').textContent = desc;
+        
+        const imgEl = q('#modal-img');
+        if(img) { imgEl.src = img; imgEl.style.display='block'; } 
+        else { imgEl.style.display='none'; }
 
-      function openModal(data){
-        if(modalImg && data.img) { modalImg.src = data.img; modalImg.alt = data.title + ' — image'; modalImg.style.display='block'; }
-        else if(modalImg){ modalImg.style.display='none'; }
-        modalTitle.textContent = data.title || '';
-        modalDesc.textContent = data.desc || '';
-        // pricing cards may not have demo/repo
-        modalDemo.href = data.demo || '#';
-        modalRepo.href = data.repo || '#';
         modal.classList.add('show');
-        modal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-        closeBtn && closeBtn.focus();
-      }
-      function closeModal(){
-        modal.classList.remove('show');
-        modal.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-      }
+      };
 
-      // open when clicking .service-card or .project-card
-      qAll('.service-card, .project-card').forEach(card=>{
-        card.addEventListener('click', (e)=>{
-          const data = {
-            title: card.dataset.title || card.dataset.service || card.querySelector('h3')?.textContent || card.querySelector('h4')?.textContent || '',
-            desc: card.dataset.desc || card.querySelector('p')?.textContent || 'Deskripsi belum tersedia.',
-            img: card.dataset.img || card.querySelector('img')?.src || card.querySelector('.project-anim')?.style.backgroundImage?.slice(5,-2) || '',
-            demo: card.dataset.demo || '#',
-            repo: card.dataset.repo || '#'
-          };
-          openModal(data);
-        });
-        card.addEventListener('keydown', e=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
+      // Add click to all cards
+      qAll('.project-card, .service-card').forEach(card => {
+        card.addEventListener('click', () => openModal(card));
       });
 
-      closeBtn && closeBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
-      window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
-    }
+      // Close events
+      close.addEventListener('click', () => modal.classList.remove('show'));
+      modal.addEventListener('click', (e) => {
+        if(e.target === modal) modal.classList.remove('show');
+      });
 
-    // Init feature chips to scroll to section or open modal
-    function initFeatureChips(){
-      const chips = qAll('.feature-chip');
-      chips.forEach(chip=>{
-        chip.addEventListener('click', ()=>{
-          const f = chip.dataset.feature;
-          // find corresponding section by id (service-<lowercase>)
-          const id = `#service-${f.toLowerCase()}`;
-          const el = document.querySelector(id);
-          if(el) {
-            el.scrollIntoView({behavior:'smooth', block:'start'});
-            gsap && gsap.fromTo(el, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6});
-          } else {
-            // fallback: open modal with brief info
-            const data = { title: f, desc: `Informasi singkat tentang layanan ${f}.`, img: '' };
-            const modalEl = q('#modal');
-            if(modalEl) modalEl.querySelector ? modalEl.querySelector('.modal-close').click() : null;
-            setTimeout(()=>{ openModal(data); }, 80);
-          }
+      // Scroll to section for chips
+      qAll('.feature-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+           const target = q(`#service-${chip.dataset.feature.toLowerCase()}`);
+           if(target) target.scrollIntoView({behavior:'smooth'});
         });
       });
     }
 
-    // Dynamically ensure service cards have dataset.img if missing (graceful)
-    function initServiceCards(){
-      qAll('.service-card').forEach((card, idx)=>{
-        if(!card.dataset.img){
-          card.dataset.img = `https://picsum.photos/seed/service-${idx}/900/600`;
-        }
-      });
-    }
-
-    // GSAP animations (hero, cards, reveal)
+    // --- GSAP ANIMATIONS ---
     function initGSAP(){
-      if(typeof gsap === 'undefined') return;
-      try{
+      if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined'){
         gsap.registerPlugin(ScrollTrigger);
-        // hero float
-        gsap.to('#hero-anim', {y:-8, duration:3, repeat:-1, yoyo:true, ease:'sine.inOut'});
 
-        // stagger reveal of project cards
-        gsap.from('.project-card', {y:20, opacity:0, duration:0.8, stagger:0.12, ease:'power3.out', scrollTrigger:{trigger:'.projects', start:'top 80%'}});
-
-        // reveal feature pages
-        qAll('.feature-page').forEach(sec=>{
-          gsap.from(sec, {y:20, opacity:0, duration:0.8, scrollTrigger:{trigger:sec, start:'top 85%'}});
+        // Header fade in
+        gsap.from(".header", {
+          duration: 1, y: 50, opacity: 0, ease: "power3.out"
         });
 
-        // floating anim-label
-        gsap.to('#anim-label', {y:-6, duration:2, repeat:-1, yoyo:true, ease:'sine.inOut'});
-
-        // simple hover scale on service cards
-        qAll('.service-card').forEach(card=>{
-          card.addEventListener('mouseenter', ()=> gsap.to(card, {scale:1.02, boxShadow:'0 18px 40px rgba(0,0,0,0.6)', duration:0.25}));
-          card.addEventListener('mouseleave', ()=> gsap.to(card, {scale:1, boxShadow:'', duration:0.25}));
+        // Stagger Project Cards
+        gsap.from(".project-card", {
+          scrollTrigger: { trigger: ".projects", start: "top 80%" },
+          y: 60, opacity: 0, duration: 0.8, stagger: 0.2, ease: "back.out(1.7)"
         });
 
-      }catch(e){
-        console.warn('GSAP init error', e);
+        // Stagger Service Rows
+        qAll('.feature-page').forEach(page => {
+          gsap.from(page, {
+            scrollTrigger: { trigger: page, start: "top 85%" },
+            x: -30, opacity: 0, duration: 0.8, ease: "power2.out"
+          });
+        });
       }
     }
-
-    // Lottie fallback safety (if lottie-player not supported)
-    function initLottieFallbacks(){
-      // nothing specific needed; lottie-player is webcomponent and safe.
-    }
-
-    // Install prompt handling
-    let deferredPrompt = null;
-    function initInstallPrompt(){
-      const installBtn = q('#install-btn');
-      if(!installBtn) return;
-
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBtn.style.display = 'block';
-        installBtn.addEventListener('click', async ()=>{
-          installBtn.disabled = true;
-          if(!deferredPrompt) return;
-          try{
-            deferredPrompt.prompt();
-            const choice = await deferredPrompt.userChoice;
-            if(choice.outcome === 'accepted'){
-              console.log('User accepted install');
-            } else {
-              console.log('User dismissed install');
-            }
-            deferredPrompt = null;
-            installBtn.style.display = 'none';
-          }catch(err){ console.warn('Install prompt error', err); }
-        });
-      });
-
-      // optionally hide button when installed
-      window.addEventListener('appinstalled', ()=> {
-        installBtn.style.display = 'none';
-        deferredPrompt = null;
-      });
-    }
-
-    // Create manifest at runtime (immediate)
-    (function createManifest(){
-      try{
-        const manifestData = {
-          name: 'Abdulhabib Portfolio PWA',
-          short_name: 'HabibPWA',
-          start_url: '.',
-          display: 'standalone',
-          background_color: '#000000',
-          theme_color: '#00c7ff',
-          icons: [
-            { src: 'https://picsum.photos/seed/pwa/192', sizes: '192x192', type: 'image/png' },
-            { src: 'https://picsum.photos/seed/pwa/512', sizes: '512x512', type: 'image/png' }
-          ]
-        };
-        const manifestBlob = new Blob([JSON.stringify(manifestData)],{type:'application/json'});
-        const manifestURL = URL.createObjectURL(manifestBlob);
-        const el = document.getElementById('manifest-placeholder');
-        if(el) el.setAttribute('href',manifestURL);
-      }catch(e){console.warn('Manifest create error',e)}
-    })();
-
-    // Service Worker registration (inline-generated SW for demo)
-    (function registerSW(){
-      if('serviceWorker' in navigator){
-        try{
-          // service worker code string with offline caching
-          const swCode = `
-            const CACHE_NAME = 'habib-cache-v1';
-            const OFFLINE_URLS = [
-              './',
-              location.pathname,
-              // assets to cache (fonts, css, main html parts)
-            ];
-            self.addEventListener('install', event => {
-              self.skipWaiting();
-              event.waitUntil(
-                caches.open(CACHE_NAME).then(cache => {
-                  // try to cache some essential routes; ignore failures
-                  return cache.addAll(OFFLINE_URLS).catch(()=>{/*non-fatal*/});
-                })
-              );
-            });
-            self.addEventListener('activate', event => {
-              event.waitUntil(self.clients.claim());
-            });
-            self.addEventListener('fetch', event => {
-              // Network-first for html, cache-first for others
-              const req = event.request;
-              if(req.method !== 'GET') return;
-              const accept = req.headers.get('accept') || '';
-              if(accept.includes('text/html')){
-                event.respondWith(
-                  fetch(req).then(res => {
-                    const copy = res.clone();
-                    caches.open(CACHE_NAME).then(c=>c.put(req, copy));
-                    return res;
-                  }).catch(()=>caches.match(req).then(r=>r || caches.match('./')))
-                );
-              } else {
-                event.respondWith(
-                  caches.match(req).then(cached => cached || fetch(req).then(resp => {
-                    // optional: cache dynamic resources
-                    return resp;
-                  }).catch(()=>{/*fail silently*/}))
-                );
-              }
-            });
-          `;
-          const swBlob = new Blob([swCode],{type:'application/javascript'});
-          const swURL = URL.createObjectURL(swBlob);
-          navigator.serviceWorker.register(swURL).then(reg => {
-            console.log('Service Worker registered', reg);
-          }).catch(err => console.warn('SW register failed', err));
-        }catch(err){
-          console.warn('SW error',err);
-        }
-      }
-    })();
-
-    // Offline indicator (simple)
-    window.addEventListener('online', ()=> console.log('Online'));
-    window.addEventListener('offline', ()=> console.log('Offline — aplikasi berjalan dalam mode offline jika sudah dicache'));
-
-    // Accessibility: ensure focus outlines visible on keyboard nav
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Tab') document.body.classList.add('user-is-tabbing');
-    });
-
   </script>
-
 </body>
 </html>
 
