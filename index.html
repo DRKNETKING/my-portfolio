@@ -292,7 +292,7 @@
                data-title="Sistem Akademik Modern"
                data-desc="Dashboard realtime (PHP + MySQL). Fitur login, role-based, live update nilai dan jadwal."
                data-img="https://picsum.photos/id/1015/1200/800"
-               data-demo="#" data-repo="#">
+               data-demo="https://demo.sistem-akademik.com" data-repo="#">
         <div class="project-anim"></div>
         <h3>Sistem Akademik</h3>
         <p>Dashboard Realtime (PHP/MySQL)</p>
@@ -300,9 +300,9 @@
 
       <article class="project-card"
                data-title="Smart Notes PWA"
-               data-desc="Aplikasi pencatat offline-first. Sinkronisasi otomatis saat online kembali."
+               data-desc="Aplikasi pencatat offline-first. Menggunakan service worker untuk caching, IndexedDB untuk penyimpanan lokal, dan sinkronisasi otomatis saat online kembali."
                data-img="https://picsum.photos/id/1006/1200/800"
-               data-demo="#" data-repo="#">
+               data-demo="https://demo.smart-notes.app" data-repo="#">
         <div class="project-anim" style="animation-duration: 4s; filter: hue-rotate(45deg);"></div>
         <h3>Smart Notes App</h3>
         <p>PWA Offline-First</p>
@@ -310,9 +310,9 @@
 
       <article class="project-card"
                data-title="E-Commerce Lite"
-               data-desc="Platform jual beli ringan dengan payment gateway midtrans."
+               data-desc="Platform jual beli ringan dengan integrasi payment gateway Midtrans. Fokus pada performa cepat dan UI/UX yang bersih."
                data-img="https://picsum.photos/id/1072/1200/800"
-               data-demo="#" data-repo="#">
+               data-demo="https://demo.ecommerce-lite.com" data-repo="#">
         <div class="project-anim" style="animation-duration: 8s; filter: hue-rotate(90deg);"></div>
         <h3>E-Commerce Lite</h3>
         <p>Jual Beli Modern</p>
@@ -320,15 +320,55 @@
       
        <article class="project-card"
                data-title="AI Generator UI"
-               data-desc="Antarmuka untuk generate image menggunakan API Stable Diffusion."
+               data-desc="Antarmuka untuk generate image menggunakan API Stable Diffusion. Desain futuristik dengan efek glassmorphism."
                data-img="https://picsum.photos/id/1024/1200/800"
-               data-demo="#" data-repo="#">
+               data-demo="https://demo.ai-image.io" data-repo="#">
         <div class="project-anim" style="animation-duration: 5s; filter: hue-rotate(180deg);"></div>
         <h3>AI Image UI</h3>
         <p>Futuristic Interface</p>
       </article>
 
-    </div>
+      <article class="project-card"
+               data-title="Landing Page Produk Baru"
+               data-desc="Contoh landing page responsif satu halaman untuk peluncuran produk baru. Fokus pada konversi dan kecepatan loading yang tinggi."
+               data-img="https://picsum.photos/seed/landingpage1/1200/800"
+               data-demo="https://demo.landingpage-basic.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 6s; filter: hue-rotate(270deg);"></div>
+        <h3>Paket Basic: Product LP</h3>
+        <p>One-page Responsive</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Website Profil Perusahaan"
+               data-desc="Website statis 3 halaman (Home, About, Contact) untuk profil bisnis kecil. Desain minimalis dan profesional."
+               data-img="https://picsum.photos/seed/companyprofile/1200/800"
+               data-demo="https://demo.company-profile.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 7s; filter: hue-rotate(30deg);"></div>
+        <h3>Paket Basic: Company Profile</h3>
+        <p>3 Halaman Statis</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Formulir Pendaftaran Interaktif"
+               data-desc="Implementasi formulir pendaftaran multipage interaktif dengan validasi realtime menggunakan Vanilla JS."
+               data-img="https://picsum.photos/seed/formvalidation/1200/800"
+               data-demo="https://demo.form-interaktif.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 3s; filter: hue-rotate(120deg);"></div>
+        <h3>Paket Basic: Formulir Interaktif</h3>
+        <p>Multi-step Form</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Mini Galeri Foto Grid"
+               data-desc="Galeri foto responsif yang menampilkan gambar dalam tata letak grid, dengan efek hover dan lightbox sederhana."
+               data-img="https://picsum.photos/seed/photogallery/1200/800"
+               data-demo="https://demo.mini-gallery.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 5.5s; filter: hue-rotate(220deg);"></div>
+        <h3>Paket Basic: Photo Gallery</h3>
+        <p>Responsive Image Grid</p>
+      </article>
+
+      </div>
 
     <h2 class="section-title" id="services">Layanan & Keahlian</h2>
 
@@ -545,23 +585,34 @@
       const close = q('#modal-close');
       
       const openModal = (card) => {
-        const title = card.dataset.title || card.querySelector('h3')?.textContent || 'Detail';
+        const title = card.dataset.title || card.querySelector('h3, h4')?.textContent || 'Detail';
         const desc = card.dataset.desc || 'Deskripsi detail belum tersedia untuk proyek ini.';
         const img = card.dataset.img;
+        const demo = card.dataset.demo || '#';
+        const repo = card.dataset.repo || '#';
         
         q('#modal-title').textContent = title;
         q('#modal-desc').textContent = desc;
+        q('#modal-demo').href = demo;
+        q('#modal-repo').href = repo;
         
         const imgEl = q('#modal-img');
         if(img) { imgEl.src = img; imgEl.style.display='block'; } 
         else { imgEl.style.display='none'; }
 
+        // Logic untuk menampilkan atau menyembunyikan tombol demo/repo jika #
+        q('#modal-demo').style.display = demo === '#' ? 'none' : 'inline-flex';
+        q('#modal-repo').style.display = repo === '#' ? 'none' : 'inline-flex';
+
         modal.classList.add('show');
       };
 
       // Add click to all cards
-      qAll('.project-card, .service-card').forEach(card => {
-        card.addEventListener('click', () => openModal(card));
+      qAll('.project-card, .service-card, .price-card').forEach(card => {
+        // Hanya tambahkan event listener untuk card yang memiliki data-title yang valid untuk modal
+        if (card.dataset.title) {
+            card.addEventListener('click', () => openModal(card));
+        }
       });
 
       // Close events
