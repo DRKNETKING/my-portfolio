@@ -211,6 +211,518 @@
     .modal-close{background:transparent;border:0;color:var(--text);font-size:24px;cursor:pointer; float: right;}
 
     /* Responsive */
+    @media(max-width:900px){
+      .header{flex-direction:column;align-items:flex-start; padding: 24px;}
+      .header h1 { font-size: 26px; }
+      .modal-card{grid-template-columns:1fr}
+      .hero-anim{width:100%;height:220px; margin-top: 20px;}
+      .feature-page{grid-template-columns:1fr; padding: 20px;}
+      .about-box{flex-direction:column;align-items:flex-start}
+      
+      /* Mobile Nav Adjustments */
+      nav { justify-content: space-between; padding: 0 20px; }
+      .nav-links { display: none; } /* Hide links on mobile for simplicity */
+      .nav-center { position: relative; left: auto; top: auto; transform: none; }
+      #live-clock { font-size: 11px; padding: 6px 10px; }
+    }
+    
+    footer{margin:40px 0 120px;text-align:center;color:rgba(255,255,255,0.3); font-size: 13px;}
+  </style>
+</head>
+<body>
+
+  <div id="loading"><div class="loader"></div><p style="color:#fff;margin-top:12px;font-size:14px;letter-spacing:1px">MEMUAT PORTFOLIO</p></div>
+
+  <nav>
+    <div class="nav-left">
+      <h2>Abdulhabib</h2>
+      <div class="chip" id="lang-text">ID</div>
+    </div>
+
+    <div class="nav-center">
+      <div id="live-clock" title="Jam lokal">--:--:--</div>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#services">Layanan</a>
+        <a href="#pricing">Harga</a>
+        <a href="#contact">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <section class="header" id="home">
+      <div class="left">
+        <div class="features" id="feature-chips">
+          <div class="feature-chip" data-feature="UI">UI</div>
+          <div class="feature-chip" data-feature="Web">Web</div>
+          <div class="feature-chip" data-feature="Mobile">Mobile</div>
+          <div class="feature-chip" data-feature="3D">3D</div>
+          <div class="feature-chip" data-feature="Branding">Branding</div>
+        </div>
+
+        <h1 id="hello-text">Membangun Solusi Digital — Modern & Cepat</h1>
+
+        <p id="desc-text">
+          Saya Abdulhabib, Web Engineer. Fokus menciptakan aplikasi web yang andal (PWA), antarmuka yang bersih, dan performa produksi tinggi. Desain berbasis komponen untuk skalabilitas.
+        </p>
+
+        <div style="margin-top:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <a href="#contact" class="btn">Mulai Proyek</a>
+          <button class="btn ghost" id="download-resume">Download CV</button>
+        </div>
+      </div>
+
+      <div class="hero-anim" id="hero-anim">
+        <lottie-player id="hero-lottie" src="https://assets10.lottiefiles.com/packages/lf20_jtbfg2nb.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%"></lottie-player>
+        <div class="anim-label">Technology & Collaboration</div>
+      </div>
+    </section>
+
+    <div class="parallax"></div>
+
+    <h2 class="section-title" id="project-title">Projek Pilihan</h2>
+    <div class="projects" id="projects">
+
+      <article class="project-card" 
+               data-title="Sistem Akademik Modern"
+               data-desc="Dashboard realtime (PHP + MySQL). Fitur: login, role-based access, input nilai cepat, manajemen jadwal, notifikasi, export CSV, responsif, dan integrasi API SIS.
+
+Fitur Utama:\n- Otentikasi & role-based\n- Dashboard nilai realtime\n- Manajemen jadwal dan presensi\n- Export/Import CSV\n- Pemberitahuan via email"
+               data-img="https://picsum.photos/id/1015/1200/800"
+               data-demo="https://demo.sistem-akademik.com" data-repo="#">
+        <div class="project-anim"></div>
+        <h3>Sistem Akademik</h3>
+        <p>Dashboard Realtime (PHP/MySQL)</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Smart Notes PWA"
+               data-desc="Aplikasi pencatat offline-first. Fitur: service worker, sinkronisasi otomatis, encryption local, tag & search, drag-n-drop, dan export PDF/MD.
+
+Fitur Utama:\n- Offline-first dengan Service Worker\n- IndexedDB untuk penyimpanan lokal\n- Sinkronisasi background saat online\n- Tagging & pencarian cepat\n- Ekspor PDF / Markdown"
+               data-img="https://picsum.photos/id/1006/1200/800"
+               data-demo="https://demo.smart-notes.app" data-repo="#">
+        <div class="project-anim" style="animation-duration: 4s; filter: hue-rotate(45deg);"></div>
+        <h3>Smart Notes App</h3>
+        <p>PWA Offline-First</p>
+      </article>
+
+      <article class="project-card"
+               data-title="E-Commerce Lite"
+               data-desc="Platform jual beli ringan. Fitur: katalog cepat, checkout 1 halaman, integrasi Midtrans, admin panel, optimasi gambar, caching, dan versi mobile-friendly.
+
+Fitur Utama:\n- Integrasi payment gateway Midtrans\n- Checkout cepat satu halaman\n- Panel admin untuk order & produk\n- Optimasi gambar & caching\n- SEO dasar"
+               data-img="https://picsum.photos/id/1072/1200/800"
+               data-demo="https://demo.ecommerce-lite.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 8s; filter: hue-rotate(90deg);"></div>
+        <h3>E-Commerce Lite</h3>
+        <p>Jual Beli Modern</p>
+      </article>
+      
+       <article class="project-card"
+               data-title="AI Generator UI"
+               data-desc="Antarmuka untuk generate image menggunakan API Stable Diffusion. Fitur: preview, prompt presets, history, download berbagai ukuran, dan queue management.
+
+Fitur Utama:\n- Integrasi API Stable Diffusion\n- Preset prompt & pengaturan resolusi\n- Riwayat hasil & undo\n- Download multi-size"
+               data-img="https://picsum.photos/id/1024/1200/800"
+               data-demo="https://demo.ai-image.io" data-repo="#">
+        <div class="project-anim" style="animation-duration: 5s; filter: hue-rotate(180deg);"></div>
+        <h3>AI Image UI</h3>
+        <p>Futuristic Interface</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Landing Page Produk Baru"
+               data-desc="Contoh landing page responsif satu halaman. Fitur: A/B hero, form konversi, animasi ringan, dan integrasi analytics.
+
+Fitur Utama:\n- Section hero alternatif A/B\n- Form konversi dengan validasi\n- Kecepatan loading optimal\n- Analytics event"
+               data-img="https://picsum.photos/seed/landingpage1/1200/800"
+               data-demo="https://demo.landingpage-basic.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 6s; filter: hue-rotate(270deg);"></div>
+        <h3>Paket Basic: Product LP</h3>
+        <p>One-page Responsive</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Website Profil Perusahaan"
+               data-desc="Website statis 3 halaman. Fitur: CMS ringan, optimasi SEO, metadata social, dan optimasi performa untuk hosting statis.
+
+Fitur Utama:\n- CMS ringan untuk update konten\n- Metadata OpenGraph & SEO\n- Halaman About & Contact siap pakai\n- Optimasi gambar & preload"
+               data-img="https://picsum.photos/seed/companyprofile/1200/800"
+               data-demo="https://demo.company-profile.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 7s; filter: hue-rotate(30deg);"></div>
+        <h3>Paket Basic: Company Profile</h3>
+        <p>3 Halaman Statis</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Formulir Pendaftaran Interaktif"
+               data-desc="Formulir multipage interaktif dengan validasi realtime. Fitur: autosave, step progress, validasi server-side, dan aksesibilitas.
+
+Fitur Utama:\n- Multi-step dengan autosave\n- Validasi realtime & server-side\n- Progress indicator\n- Aksesibilitas WCAG basic"
+               data-img="https://picsum.photos/seed/formvalidation/1200/800"
+               data-demo="https://demo.form-interaktif.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 3s; filter: hue-rotate(120deg);"></div>
+        <h3>Paket Basic: Formulir Interaktif</h3>
+        <p>Multi-step Form</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Mini Galeri Foto Grid"
+               data-desc="Galeri foto responsif dengan lightbox. Fitur: lazy-load, filter by tag, fullscreen preview, dan opsi download.
+
+Fitur Utama:\n- Lazy-loading gambar\n- Filter tag & kategori\n- Lightbox fullscreen\n- Download & share"
+               data-img="https://picsum.photos/seed/photogallery/1200/800"
+               data-demo="https://demo.mini-gallery.com" data-repo="#">
+        <div class="project-anim" style="animation-duration: 5.5s; filter: hue-rotate(220deg);"></div>
+        <h3>Paket Basic: Photo Gallery</h3>
+        <p>Responsive Image Grid</p>
+      </article>
+
+      <!-- Tambahan project agar minimal 10 -->
+      <article class="project-card"
+               data-title="Chat Support Bot"
+               data-desc="Sistem chat support otomatis untuk website. Fitur: autoresponder, FAQ dynamic, integrasi WhatsApp, dan queue handling.
+
+Fitur Utama:\n- Autoresponder cerdas\n- Routing chat ke agent\n- Integrasi WhatsApp API\n- Statistik percakapan"
+               data-img="https://picsum.photos/id/1011/1200/800"
+               data-demo="#" data-repo="#">
+        <div class="project-anim" style="animation-duration: 4.2s; filter: hue-rotate(10deg);"></div>
+        <h3>Chat Support Bot</h3>
+        <p>Customer Support Automation</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Dashboard Analytics"
+               data-desc="Dashboard metrik untuk bisnis. Fitur: visualisasi realtime, custom widgets, role-based, export CSV, dan integrasi event tracking.
+
+Fitur Utama:\n- Visualisasi time-series\n- Custom widget & filter\n- Role-based views\n- Export data"
+               data-img="https://picsum.photos/id/1003/1200/800"
+               data-demo="#" data-repo="#">
+        <div class="project-anim" style="animation-duration: 3.8s; filter: hue-rotate(200deg);"></div>
+        <h3>Dashboard Analytics</h3>
+        <p>Insight & Metrics</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Marketplace Vendor"
+               data-desc="Marketplace multi-vendor sederhana. Fitur: dashboard vendor, order management, rating, dan komisi otomatis.
+
+Fitur Utama:\n- Dashboard vendor terpisah\n- Manajemen order & pengiriman\n- Sistem rating & review\n- Pengaturan komisi otomatis"
+               data-img="https://picsum.photos/id/1005/1200/800"
+               data-demo="#" data-repo="#">
+        <div class="project-anim" style="animation-duration: 6s; filter: hue-rotate(60deg);"></div>
+        <h3>Marketplace Vendor</h3>
+        <p>Multi-vendor E-Commerce</p>
+      </article>
+
+      <article class="project-card"
+               data-title="Appointment Scheduler"
+               data-desc="Sistem jadwal janji temu online. Fitur: integrasi kalender, reminder email/SMS, slot management, dan payment for booking.
+
+Fitur Utama:\n- Integrasi Google Calendar\n- Reminder otomatis (email/SMS)\n- Manajemen slot dan buffer time\n- Pembayaran untuk reservasi"
+               data-img="https://picsum.photos/id/1020/1200/800"
+               data-demo="#" data-repo="#">
+        <div class="project-anim" style="animation-duration: 4.6s; filter: hue-rotate(140deg);"></div>
+        <h3>Appointment Scheduler</h3>
+        <p>Booking & Scheduling</p>
+      </article>
+
+    </div>
+
+    <h2 class="section-title" id="services">Layanan & Keahlian</h2>
+
+    <section class="feature-page" id="service-ui">
+      <div>
+        <h3 style="color:var(--blue); margin-bottom: 10px;">UI / Frontend Development</h3>
+        <p>Desain antarmuka yang tidak hanya indah, tapi juga fungsional dan aksesibel.</p>
+        <div class="feature-grid">
+          <div class="service-card" data-title="UI Design System" data-desc="Pembuatan design system lengkap di Figma.">
+            <h4>Design System</h4>
+            <p>Figma & Prototyping</p>
+          </div>
+          <div class="service-card" data-title="Frontend Code" data-desc="Implementasi desain ke kode React/Vue yang bersih.">
+            <h4>Frontend Dev</h4>
+            <p>React / Vue / Tailwind</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="https://picsum.photos/id/1/800/600" alt="UI" />
+      </div>
+    </section>
+
+    <section class="feature-page" id="service-web">
+      <div>
+        <h3 style="color:var(--blue); margin-bottom: 10px;">Web Backend & API</h3>
+        <p>Pondasi yang kuat untuk aplikasi skala besar. Database teroptimasi dan API cepat.</p>
+        <div class="feature-grid">
+           <div class="service-card" data-title="REST API" data-desc="Pembuatan API yang aman dan cepat.">
+            <h4>REST API</h4>
+            <p>NodeJS / PHP</p>
+          </div>
+          <div class="service-card" data-title="Database" data-desc="Optimasi query database untuk data besar.">
+            <h4>Database</h4>
+            <p>MySQL / Mongo</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="https://picsum.photos/id/2/800/600" alt="Web" />
+      </div>
+    </section>
+
+     <section class="feature-page" id="service-mobile">
+      <div>
+        <h3 style="color:var(--blue); margin-bottom: 10px;">Mobile & Apps</h3>
+        <p>Aplikasi hybrid yang bisa berjalan di Android dan iOS dengan satu basis kode.</p>
+        <div class="feature-grid">
+          <div class="service-card"><h4>Hybrid App</h4><p>React Native / Flutter</p></div>
+        </div>
+      </div>
+      <div>
+         <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:220px"></lottie-player>
+      </div>
+    </section>
+
+    <h2 class="section-title" id="pricing">Paket Harga</h2>
+    <section class="feature-page">
+      <div style="width:100%; grid-column: span 2;">
+        <div class="pricing-grid">
+          
+          <div class="price-card service-card" data-title="Paket Basic">
+            <h4>Paket Basic</h4>
+            <div class="price-amount">Rp 450</div>
+            <div class="price-list">
+              <ul>
+                <li>Landing Page 1 Halaman</li>
+                <li>Responsive Mobile</li>
+                <li>Gratis Hosting 1 Bulan</li>
+              </ul>
+            </div>
+            <button class="btn ghost" style="width:100%">Pilih</button>
+          </div>
+
+          <div class="price-card service-card" data-title="Paket Standard" style="border-color: var(--blue); box-shadow: 0 0 15px rgba(0,199,255,0.1);">
+            <div style="position:absolute; top:0; right:0; background:var(--blue); color:#000; font-size:10px; padding:4px 8px; border-bottom-left-radius:10px; font-weight:700">POPULAR</div>
+            <h4>Paket Business</h4>
+            <div class="price-amount">Rp 750k</div>
+            <div class="price-list">
+              <ul>
+                <li>5 Halaman Website</li>
+                <li>SEO Dasar Google</li>
+                <li>Form Kontak & Email</li>
+                <li>Analytics</li>
+              </ul>
+            </div>
+            <button class="btn" style="width:100%">Pilih</button>
+          </div>
+
+          <div class="price-card service-card" data-title="Paket Custom">
+             <h4>Custom App</h4>
+            <div class="price-amount">Hubungi</div>
+            <div class="price-list">
+              <ul>
+                <li>Sistem Informasi Kompleks</li>
+                <li>E-Commerce / Toko Online</li>
+                <li>Integrasi API Khusus</li>
+              </ul>
+            </div>
+            <button class="btn ghost" style="width:100%">Diskusi</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <h2 class="section-title" id="about">Tentang Saya</h2>
+    <section class="about-box">
+      <img src="https://picsum.photos/seed/habib/400/400" alt="Abdulhabib" />
+      <div>
+        <h3>Abdulhabib — Web Engineer</h3>
+        <p style="margin: 10px 0; line-height:1.6; color:rgba(255,255,255,0.8)">
+          Saya adalah pengembang web yang berdedikasi dengan fokus pada pembuatan antarmuka pengguna yang menarik dan performa backend yang solid. Berpengalaman dalam stack modern dan selalu mengikuti tren teknologi terbaru di tahun 2025.
+        </p>
+        <a href="mailto:dullbibb@gmail.com" class="btn">Kirim Email</a>
+      </div>
+    </section>
+
+    <div class="contact-box" id="contact">
+      <h2 style="margin-bottom:16px; color:var(--blue)">Hubungi Saya</h2>
+      <div style="display:grid; gap:10px;">
+        <input class="input" id="nama" placeholder="Nama Lengkap" />
+        <input class="input" id="email" placeholder="Alamat Email" />
+        <textarea class="input" id="pesan" rows="4" placeholder="Tulis pesan proyek Anda di sini..."></textarea>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:10px">
+        <button class="btn" onclick="kirimPesan()">Kirim Pesan</button>
+        <button class="btn ghost" id="clear-form">Reset</button>
+      </div>
+    </div>
+
+    <footer>
+      © <span id="yr"></span> Abdulhabib. All Rights Reserved. <br>
+      Semua Hak Cipta Dilindungi. Reproduksi atau penggunaan tanpa izin dilarang.
+    </footer>
+
+  </main>
+
+  <button id="install-btn" style="display:none">Install App</button>
+  <div id="wa-btn" onclick="window.open('https://wa.me/6285960397582','_blank')">💬</div>
+
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div id="modal-media">
+        <img id="modal-img" src="" alt="Detail" />
+      </div>
+      <div class="modal-info">
+        <div style="display:flex;justify-content:space-between;align-items:start">
+          <h3 id="modal-title" style="color:var(--blue); font-size:24px;">Judul</h3>
+          <button class="modal-close" id="modal-close">✕</button>
+        </div>
+        <p id="modal-desc" style="margin:16px 0; line-height:1.6; color:rgba(255,255,255,0.8)"></p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a id="modal-demo" class="btn" href="#" target="_blank">Live Demo</a>
+          <a id="modal-repo" class="btn ghost" href="#" target="_blank">Source Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- UTILITIES ---
+    const q = (el) => document.querySelector(el);
+    const qAll = (el) => document.querySelectorAll(el);
+
+    // --- ON LOAD ---
+    window.addEventListener('load', () => {
+      // Hide Loader
+      const ld = q('#loading');
+      if(ld) {
+        ld.style.opacity = '0';
+        setTimeout(() => ld.style.display='none', 500);
+      }
+      
+      q('#yr').textContent = new Date().getFullYear();
+      startClock();
+      initInteractions();
+      initGSAP();
+    });
+
+    // --- CLOCK (CENTERED) ---
+    function startClock(){
+      const el = q('#live-clock');
+      function update(){
+        const now = new Date();
+        // Format: SEN, 02 DEC | 14:30:00
+        const dateOpt = { weekday:'short', day:'2-digit', month:'short' };
+        const timeStr = now.toLocaleTimeString('id-ID', {hour12:false});
+        const dateStr = now.toLocaleDateString('id-ID', dateOpt).toUpperCase();
+        el.textContent = `${dateStr} • ${timeStr}`;
+      }
+      setInterval(update, 1000);
+      update();
+    }
+
+    // --- FORM & ACTIONS ---
+    function kirimPesan(){
+      const n = q('#nama').value, e = q('#email').value, p = q('#pesan').value;
+      if(!n || !p) return alert('Mohon isi nama dan pesan.');
+      const link = `mailto:habib08081999@gmail.com?subject=Project dari ${n}&body=Email: ${e}%0D%0A%0D%0A${p}`;
+      window.location.href = link;
+    }
+    q('#clear-form').addEventListener('click', () => {
+      q('#nama').value=''; q('#email').value=''; q('#pesan').value='';
+    });
+
+    q('#download-resume').addEventListener('click', () => {
+        alert("Simulasi: Mengunduh CV Abdulhabib...");
+    });
+
+    // --- MODAL LOGIC ---
+    function initInteractions(){
+      const modal = q('#modal');
+      const close = q('#modal-close');
+      
+      const openModal = (card) => {
+        const title = card.dataset.title || card.querySelector('h3, h4')?.textContent || 'Detail';
+        const desc = card.dataset.desc || 'Deskripsi detail belum tersedia untuk proyek ini.';
+        const img = card.dataset.img;
+        const demo = card.dataset.demo || '#';
+        const repo = card.dataset.repo || '#';
+        
+        q('#modal-title').textContent = title;
+        q('#modal-desc').textContent = desc;
+        q('#modal-demo').href = demo;
+        q('#modal-repo').href = repo;
+        
+        const imgEl = q('#modal-img');
+        if(img) { imgEl.src = img; imgEl.style.display='block'; } 
+        else { imgEl.style.display='none'; }
+
+        // Logic untuk menampilkan atau menyembunyikan tombol demo/repo jika #
+        q('#modal-demo').style.display = demo === '#' ? 'none' : 'inline-flex';
+        q('#modal-repo').style.display = repo === '#' ? 'none' : 'inline-flex';
+
+        modal.classList.add('show');
+      };
+
+      // Add click to all cards
+      qAll('.project-card, .service-card, .price-card').forEach(card => {
+        // Hanya tambahkan event listener untuk card yang memiliki data-title yang valid untuk modal
+        if (card.dataset.title) {
+            card.addEventListener('click', () => openModal(card));
+        }
+      });
+
+      // Close events
+      close.addEventListener('click', () => modal.classList.remove('show'));
+      modal.addEventListener('click', (e) => {
+        if(e.target === modal) modal.classList.remove('show');
+      });
+
+      // Scroll to section for chips
+      qAll('.feature-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+           const target = q(`#service-${chip.dataset.feature.toLowerCase()}`);
+           if(target) target.scrollIntoView({behavior:'smooth'});
+        });
+      });
+    }
+
+    // --- GSAP ANIMATIONS ---
+    function initGSAP(){
+      if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined'){
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header fade in
+        gsap.from(".header", {
+          duration: 1, y: 50, opacity: 0, ease: "power3.out"
+        });
+
+        // Stagger Project Cards
+        gsap.from(".project-card", {
+          scrollTrigger: { trigger: ".projects", start: "top 80%" },
+          y: 60, opacity: 0, duration: 0.8, stagger: 0.2, ease: "back.out(1.7)"
+        });
+
+        // Stagger Service Rows
+        qAll('.feature-page').forEach(page => {
+          gsap.from(page, {
+            scrollTrigger: { trigger: page, start: "top 85%" },
+            x: -30, opacity: 0, duration: 0.8, ease: "power2.out"
+          });
+        });
+      }
+    }
+  </script>
+</body>
+</html>
 
 
 
